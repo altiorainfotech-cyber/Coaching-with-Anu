@@ -143,7 +143,7 @@ export default function TheProgram() {
                     className="group rounded-2xl border border-zinc-100 bg-white p-6 shadow-sm transition-shadow hover:border-brand-200 hover:shadow-xl hover:shadow-brand-900/5 sm:p-7"
                   >
                     <div className="flex items-start gap-4">
-                      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-inset ring-brand-100 transition-colors group-hover:bg-brand-600 group-hover:text-white">
+                      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-red-500 via-brand-500 to-yellow-400 text-white shadow-md shadow-brand-600/20 ring-1 ring-inset ring-white/25 transition-transform group-hover:scale-105">
                         <svg
                           className="h-6 w-6"
                           viewBox="0 0 20 20"
@@ -178,7 +178,7 @@ export default function TheProgram() {
             href="#the-program"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            className="group inline-flex items-center gap-2 rounded-full bg-linear-to-br from-brand-600 to-brand-700 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-brand-600/30 ring-1 ring-inset ring-white/20 transition-shadow hover:shadow-xl hover:shadow-brand-600/40"
+            className="group inline-flex items-center gap-2 rounded-none rounded-tl-3xl rounded-br-3xl bg-black px-8 py-4 text-base font-semibold text-white shadow-lg shadow-black/25 ring-1 ring-inset ring-white/15 transition-all hover:bg-zinc-800 hover:shadow-xl"
           >
             Start the 5-step formula
             <svg

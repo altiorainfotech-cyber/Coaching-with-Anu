@@ -13,18 +13,18 @@ const INSTAGRAM = "https://instagram.com/growursocials_withanu";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-zinc-100 bg-linear-to-b from-white to-brand-50/50">
+    <footer className="border-t border-white/10 bg-linear-to-b from-brand-900 to-[#0c1838] text-white">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-10 md:grid-cols-[1.2fr_1.6fr] md:gap-16">
           {/* Brand */}
           <div>
             <a
               href="#top"
-              className="text-lg font-semibold tracking-tight text-black"
+              className="text-lg font-semibold tracking-tight text-white"
             >
-              Coaching <span className="text-brand-600">with Anu</span>
+              Coaching <span className="text-brand-300">with Anu</span>
             </a>
-            <p className="mt-4 max-w-sm text-sm leading-7 text-zinc-500">
+            <p className="mt-4 max-w-sm text-sm leading-7 text-brand-100/70">
               Structured online business education with a real mentor — so you
               stop guessing and start building multiple income streams.
             </p>
@@ -32,7 +32,7 @@ export default function Footer() {
               href={INSTAGRAM}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-medium text-brand-700 shadow-sm transition-colors hover:border-brand-300 hover:bg-brand-50"
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:border-white/40 hover:bg-white/15"
             >
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2.2c3.2 0 3.6 0 4.8.07 1.2.05 1.8.25 2.2.42.6.2 1 .47 1.4.9.43.4.7.8.9 1.4.17.4.37 1 .42 2.2.07 1.2.07 1.6.07 4.8s0 3.6-.07 4.8c-.05 1.2-.25 1.8-.42 2.2-.2.6-.47 1-.9 1.4-.4.43-.8.7-1.4.9-.4.17-1 .37-2.2.42-1.2.07-1.6.07-4.8.07s-3.6 0-4.8-.07c-1.2-.05-1.8-.25-2.2-.42-.6-.2-1-.47-1.4-.9-.43-.4-.7-.8-.9-1.4-.17-.4-.37-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.8c.05-1.2.25-1.8.42-2.2.2-.6.47-1 .9-1.4.4-.43.8-.7 1.4-.9.4-.17 1-.37 2.2-.42C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.07-.9.04-1.4.2-1.7.32-.43.17-.74.37-1.06.7-.32.31-.52.62-.7 1.05-.12.3-.28.8-.32 1.7C3.2 9.5 3.2 9.9 3.2 12s0 2.5.07 3.7c.04.9.2 1.4.32 1.7.17.43.37.74.7 1.06.31.32.62.52 1.05.7.3.12.8.28 1.7.32 1.2.07 1.6.07 4.7.07s3.5 0 4.7-.07c.9-.04 1.4-.2 1.7-.32.43-.17.74-.37 1.06-.7.32-.31.52-.62.7-1.05.12-.3.28-.8.32-1.7.07-1.2.07-1.6.07-3.7s0-2.5-.07-3.7c-.04-.9-.2-1.4-.32-1.7a2.85 2.85 0 0 0-.7-1.06 2.85 2.85 0 0 0-1.05-.7c-.3-.12-.8-.28-1.7-.32C15.5 4 15.1 4 12 4Zm0 3.05A4.95 4.95 0 1 1 12 17a4.95 4.95 0 0 1 0-9.9Zm0 1.8a3.15 3.15 0 1 0 0 6.3 3.15 3.15 0 0 0 0-6.3Zm5.15-3.2a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z" />
@@ -47,7 +47,7 @@ export default function Footer() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm text-zinc-600 transition-colors hover:text-brand-700"
+                className="text-sm text-brand-100/80 transition-colors hover:text-white"
               >
                 {item.label}
               </a>
@@ -56,13 +56,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 border-t border-zinc-100 pt-6 text-center text-sm text-zinc-500">
+        <div className="mt-14 border-t border-white/10 pt-6 text-center text-sm text-brand-100/60">
           © 2026 Online Business Coaching with Anu ·{" "}
           <a
             href={INSTAGRAM}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-brand-600 transition-colors hover:text-brand-700"
+            className="font-medium text-brand-300 transition-colors hover:text-white"
           >
             @growursocials_withanu
           </a>

@@ -2,7 +2,6 @@
 
 import { motion } from "motion/react";
 import Reveal from "./Reveal";
-import TiltCard from "./TiltCard";
 
 type Problem = {
   index: string;
@@ -44,11 +43,10 @@ const list = {
 };
 
 const card = {
-  hidden: { opacity: 0, y: 60, rotateX: -22 },
+  hidden: { opacity: 0, y: 60 },
   show: {
     opacity: 1,
     y: 0,
-    rotateX: 0,
     transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const },
   },
 };
@@ -146,53 +144,56 @@ export default function WhyEducation() {
             <motion.div
               key={p.title}
               variants={card}
-              className="[transform-style:preserve-3d]"
+              whileHover={{ y: -10 }}
+              transition={{ type: "spring", stiffness: 280, damping: 20 }}
+              className="group relative h-full overflow-hidden rounded-[1.75rem] border border-brand-100 bg-white p-8 shadow-sm transition-shadow duration-300 hover:border-transparent hover:shadow-[0_34px_80px_-26px_rgba(244,63,94,0.55)]"
             >
-              <TiltCard
-                intensity={7}
-                glare={false}
-                className="group relative h-full overflow-hidden rounded-3xl border border-brand-100 bg-white p-8 shadow-sm"
+              {/* Bold gradient wash on hover */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-linear-to-br from-rose-500 via-rose-600 to-brand-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              />
+
+              {/* Big number watermark */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -right-1 top-1 select-none bg-linear-to-br from-brand-500/20 to-brand-700/5 bg-clip-text font-serif text-[7.5rem] font-bold leading-none text-transparent transition-colors duration-300 group-hover:from-white/30 group-hover:to-white/10"
               >
-                {/* Big faint number watermark */}
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute -right-2 -top-6 select-none font-serif text-[8rem] font-bold leading-none text-brand-600/[0.06]"
-                >
-                  {p.index}
+                {p.index}
+              </span>
+
+              <div className="relative">
+                <span className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-rose-200 bg-rose-50 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-rose-500 shadow-sm transition-colors duration-300 group-hover:border-white/30 group-hover:bg-white/15 group-hover:text-white">
+                  <svg className="h-3 w-3" viewBox="0 0 20 20" fill="none">
+                    <path
+                      d="M6 6l8 8M14 6l-8 8"
+                      stroke="currentColor"
+                      strokeWidth="2.4"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  The trap
                 </span>
 
-                <div
-                  style={{ transform: "translateZ(40px)" }}
-                  className="relative"
-                >
-                  <span className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-rose-200 bg-rose-50 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-rose-500">
-                    <svg className="h-3 w-3" viewBox="0 0 20 20" fill="none">
-                      <path
-                        d="M6 6l8 8M14 6l-8 8"
-                        stroke="currentColor"
-                        strokeWidth="2.4"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                    The trap
-                  </span>
+                <span className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-red-500 via-brand-500 to-yellow-400 text-white shadow-lg shadow-brand-600/30 ring-1 ring-inset ring-white/20 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6 group-hover:shadow-black/20">
+                  <svg className="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                    {p.icon}
+                  </svg>
+                </span>
 
-                  <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 ring-1 ring-inset ring-brand-100">
-                    <svg
-                      className="h-6 w-6"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      {p.icon}
-                    </svg>
-                  </span>
+                <h3 className="text-2xl font-bold text-black transition-colors duration-300 group-hover:text-white">
+                  {p.title}
+                </h3>
+                <p className="mt-3 leading-7 text-zinc-600 transition-colors duration-300 group-hover:text-rose-50">
+                  {p.body}
+                </p>
 
-                  <h3 className="text-xl font-semibold text-black">
-                    {p.title}
-                  </h3>
-                  <p className="mt-2.5 leading-7 text-zinc-600">{p.body}</p>
-                </div>
-              </TiltCard>
+                {/* Animated accent line */}
+                <span
+                  aria-hidden
+                  className="mt-6 block h-1 w-12 rounded-full bg-linear-to-r from-rose-400 to-brand-500 transition-all duration-300 group-hover:w-24 group-hover:from-white group-hover:to-white/70"
+                />
+              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -216,16 +217,20 @@ export default function WhyEducation() {
               aria-hidden
               className="absolute inset-[-150%] animate-[border-spin_8s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0%,#1d4ed8_12%,#60a5fa_22%,#93c5fd_28%,transparent_42%,transparent_100%)]"
             />
-            <div className="relative grid gap-10 overflow-hidden rounded-[1.65rem] bg-white p-8 sm:p-12 lg:grid-cols-2 lg:items-center">
-              {/* inner glow */}
+            <div className="relative grid gap-10 overflow-hidden rounded-[1.65rem] bg-linear-to-br from-white via-white to-brand-50/60 p-8 sm:p-12 lg:grid-cols-2 lg:items-center">
+              {/* inner glows */}
               <div
                 aria-hidden
                 className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-brand-200/50 blur-3xl"
               />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-brand-300/30 blur-3xl"
+              />
 
               <div className="relative">
                 <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700 ring-1 ring-inset ring-brand-200">
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-brand-600 text-white">
+                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-linear-to-br from-red-500 via-brand-500 to-yellow-400 text-white">
                     <Check />
                   </span>
                   The path
@@ -244,7 +249,7 @@ export default function WhyEducation() {
                 </p>
                 <a
                   href="#the-program"
-                  className="group mt-7 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700"
+                  className="group mt-7 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50/70 px-5 py-2.5 text-sm font-semibold text-brand-700 shadow-sm transition-all duration-300 hover:gap-3 hover:border-brand-300 hover:bg-brand-100/70 hover:shadow-md"
                 >
                   See exactly what you get inside the program
                   <svg
@@ -275,12 +280,28 @@ export default function WhyEducation() {
                   <motion.li
                     key={b}
                     variants={checkItem}
-                    className="flex items-center gap-3 rounded-xl border border-brand-100 bg-brand-50/40 px-4 py-3.5 transition-colors hover:border-brand-300 hover:bg-brand-50"
+                    className="group/li flex items-center gap-3.5 rounded-2xl border border-brand-100 bg-white px-4 py-3.5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg hover:shadow-brand-900/5"
                   >
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-brand-500 to-brand-700 text-white shadow-lg shadow-brand-600/30">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-red-500 via-brand-500 to-yellow-400 text-white shadow-lg shadow-brand-600/30 transition-transform duration-300 group-hover/li:scale-110 group-hover/li:rotate-3">
                       <Check />
                     </span>
-                    <span className="font-medium text-zinc-800">{b}</span>
+                    <span className="font-semibold text-zinc-800 transition-colors group-hover/li:text-brand-800">
+                      {b}
+                    </span>
+                    <svg
+                      aria-hidden
+                      className="ml-auto h-4 w-4 -translate-x-2 text-brand-500 opacity-0 transition-all duration-300 group-hover/li:translate-x-0 group-hover/li:opacity-100"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                    >
+                      <path
+                        d="M3 8h10M9 4l4 4-4 4"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                   </motion.li>
                 ))}
               </motion.ul>
