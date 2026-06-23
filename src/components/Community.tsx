@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image, { type StaticImageData } from "next/image";
 import Reveal from "./Reveal";
 import s1 from "../../public/images/Community/student-1-CxxwZOtN.jpg";
@@ -8,10 +9,111 @@ import s3 from "../../public/images/Community/student-3-KxZ6jXV2.jpg";
 
 const SLIDES: StaticImageData[] = [s1, s2, s3];
 
-// Duplicate the set so the marquee can loop seamlessly (translate -50% = one set).
-const LOOP = [...SLIDES, ...SLIDES];
+// Triple the set so the loop is seamless in both directions (swipe + auto).
+const LOOP = [...SLIDES, ...SLIDES, ...SLIDES];
 
 export default function Community() {
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const SPEED = 0.6; // px per frame (slow continuous drift)
+    let raf = 0;
+    let paused = false;
+    let resumeTimer: ReturnType<typeof setTimeout> | undefined;
+
+    // Drag-to-scroll (mouse). Touch uses native scrolling.
+    let dragging = false;
+    let startX = 0;
+    let startScroll = 0;
+
+    const third = () => el.scrollWidth / 3;
+
+    const normalize = () => {
+      const t = third();
+      if (t === 0) return;
+      if (el.scrollLeft < t * 0.5) el.scrollLeft += t;
+      else if (el.scrollLeft >= t * 1.5) el.scrollLeft -= t;
+    };
+
+    const step = () => {
+      if (!paused) {
+        el.scrollLeft += SPEED;
+        normalize();
+      }
+      raf = requestAnimationFrame(step);
+    };
+
+    const pause = () => {
+      paused = true;
+      if (resumeTimer) clearTimeout(resumeTimer);
+    };
+    const resume = () => {
+      if (resumeTimer) clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => {
+        paused = false;
+      }, 1500);
+    };
+
+    const onPointerDown = (e: PointerEvent) => {
+      pause();
+      if (e.pointerType === "mouse") {
+        dragging = true;
+        startX = e.clientX;
+        startScroll = el.scrollLeft;
+        el.classList.add("cursor-grabbing");
+      }
+    };
+    const onPointerMove = (e: PointerEvent) => {
+      if (!dragging) return;
+      el.scrollLeft = startScroll - (e.clientX - startX);
+    };
+    const onPointerUp = () => {
+      if (dragging) {
+        dragging = false;
+        el.classList.remove("cursor-grabbing");
+      }
+      resume();
+    };
+    const onScroll = () => normalize();
+    const onWheel = () => {
+      pause();
+      resume();
+    };
+
+    // Start in the middle third so both directions have room.
+    raf = requestAnimationFrame(() => {
+      el.scrollLeft = third();
+      if (!reduce) raf = requestAnimationFrame(step);
+    });
+
+    el.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", onPointerUp);
+    el.addEventListener("scroll", onScroll, { passive: true });
+    el.addEventListener("wheel", onWheel, { passive: true });
+    el.addEventListener("touchstart", pause, { passive: true });
+    window.addEventListener("touchend", resume);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      if (resumeTimer) clearTimeout(resumeTimer);
+      el.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", onPointerUp);
+      el.removeEventListener("scroll", onScroll);
+      el.removeEventListener("wheel", onWheel);
+      el.removeEventListener("touchstart", pause);
+      window.removeEventListener("touchend", resume);
+    };
+  }, []);
+
   return (
     <section
       id="community"
@@ -22,15 +124,10 @@ export default function Community() {
         className="pointer-events-none absolute right-0 top-24 h-96 w-96 rounded-full bg-brand-100/70 blur-3xl"
       />
 
-      {/* Marquee keyframes + reduced-motion guard */}
+      {/* Hide scrollbar */}
       <style>{`
-        @keyframes community-marquee {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .community-track { animation: none !important; }
-        }
+        .community-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+        .community-scroll::-webkit-scrollbar { display: none; }
       `}</style>
 
       <div className="relative mx-auto max-w-2xl px-6">
@@ -48,7 +145,7 @@ export default function Community() {
         </Reveal>
       </div>
 
-      {/* Looping carousel — 3 up on desktop, 2 on tablet, 1 on mobile */}
+      {/* Swipeable looping carousel — 3 up on desktop, 2 tablet, 1 mobile */}
       <Reveal direction="up" className="mt-16">
         <div className="group relative overflow-hidden">
           {/* edge fades */}
@@ -61,7 +158,10 @@ export default function Community() {
             className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-white to-transparent sm:w-24"
           />
 
-          <div className="community-track flex w-max animate-[community-marquee_55s_linear_infinite]">
+          <div
+            ref={trackRef}
+            className="community-scroll flex cursor-grab touch-pan-x overflow-x-auto overscroll-x-contain"
+          >
             {LOOP.map((src, i) => (
               <div
                 key={i}
