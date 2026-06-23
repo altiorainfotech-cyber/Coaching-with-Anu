@@ -14,7 +14,6 @@ const STREAMS: Stream[] = [
   {
     name: "Affiliate Marketing",
     desc: "Earn commissions promoting products you genuinely believe in.",
-    featured: true,
     icon: (
       <>
         <path d="M8 12a3 3 0 0 0 4.2 0l2-2a3 3 0 0 0-4.2-4.2l-1 1" />
