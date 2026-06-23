@@ -1,4 +1,4 @@
-import Hero from "@/components/Hero";
+import HeroModern from "@/components/HeroModern";
 import StatsBar from "@/components/StatsBar";
 import About from "@/components/About";
 import WhyEducation from "@/components/WhyEducation";
@@ -13,7 +13,7 @@ import CtaBanner from "@/components/CtaBanner";
 export default function Home() {
   return (
     <main className="flex flex-1 flex-col">
-      <Hero />
+      <HeroModern />
       <StatsBar />
       <About />
       <WhyEducation />
