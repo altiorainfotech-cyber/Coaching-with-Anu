@@ -4,9 +4,13 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import anuPhoto from "../../public/anu-BTUDadeL.jpg";
 import Reveal from "./Reveal";
-import TiltCard from "./TiltCard";
 
-const paragraph = {
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+};
+
+const item = {
   hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
@@ -15,10 +19,30 @@ const paragraph = {
   },
 };
 
-const stagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
-};
+// Replace this URL with a real second photo later.
+const SECONDARY_PHOTO =
+  "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=700&q=80";
+
+const features = [
+  { label: "4 income streams", color: "from-rose-400 to-rose-500" },
+  { label: "Online learning", color: "from-violet-500 to-violet-600" },
+  { label: "$200K+ earned", color: "from-amber-400 to-orange-500" },
+  { label: "Structured path", color: "from-teal-400 to-teal-500" },
+];
+
+function Check() {
+  return (
+    <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none">
+      <path
+        d="M3.5 8.5l3 3 6-7"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export default function About() {
   return (
@@ -29,49 +53,106 @@ export default function About() {
       {/* Soft brand wash */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-brand-100/60 blur-3xl"
+        className="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-brand-100/50 blur-3xl"
       />
 
-      <div className="mx-auto grid max-w-6xl items-center gap-14 px-6 lg:grid-cols-2 lg:gap-20">
-        {/* Image */}
-        <Reveal direction="right" className="relative mx-auto w-full max-w-md">
-          <div
+      <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 lg:grid-cols-2 lg:gap-20">
+        {/* ---------- Image collage ---------- */}
+        <Reveal
+          direction="right"
+          className="relative mx-auto w-full max-w-lg pb-16 pl-6 sm:pb-10"
+        >
+          {/* Dashed swirl */}
+          <svg
             aria-hidden
-            className="absolute -inset-4 -z-10 rounded-[2rem] bg-linear-to-tr from-brand-500/30 to-brand-200/40 blur-2xl"
-          />
-          <TiltCard
-            intensity={7}
-            className="group overflow-hidden rounded-3xl ring-1 ring-black/5 shadow-2xl shadow-brand-900/10"
+            viewBox="0 0 160 200"
+            fill="none"
+            className="pointer-events-none absolute -left-2 bottom-0 h-44 w-36 text-rose-300"
+          >
+            <path
+              d="M150 10C90 30 20 50 30 110c8 48 70 40 80 10"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeDasharray="3 11"
+            />
+          </svg>
+
+          {/* Paper plane */}
+          <svg
+            aria-hidden
+            viewBox="0 0 48 48"
+            fill="none"
+            className="pointer-events-none absolute -bottom-2 left-6 h-12 w-12 text-rose-400"
+          >
+            <path
+              d="M44 4L4 22l16 6 6 16L44 4Z"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M44 4L20 28"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinejoin="round"
+            />
+          </svg>
+
+          {/* Primary photo */}
+          <motion.div
+            initial={{ opacity: 0, y: 24, rotate: -6 }}
+            whileInView={{ opacity: 1, y: 0, rotate: -3 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="relative z-10 w-[70%] overflow-hidden rounded-[1.75rem] ring-4 ring-white shadow-2xl shadow-brand-900/15"
           >
             <Image
               src={anuPhoto}
               alt="Anu, founder of Coaching with Anu, at her workspace"
               placeholder="blur"
-              sizes="(max-width: 1024px) 90vw, 28rem"
+              sizes="(max-width: 1024px) 60vw, 18rem"
               className="h-auto w-full object-cover"
-              priority={false}
             />
-          </TiltCard>
+          </motion.div>
 
-          {/* Floating accent chip */}
+          {/* Secondary photo */}
+          <motion.div
+            initial={{ opacity: 0, y: -24, rotate: 6 }}
+            whileInView={{ opacity: 1, y: 0, rotate: 3 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute -top-6 right-0 z-20 w-[55%] overflow-hidden rounded-[1.75rem] ring-4 ring-white shadow-2xl shadow-brand-900/15"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={SECONDARY_PHOTO}
+              alt="Learning online from anywhere"
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </motion.div>
+
+          {/* Stat badge */}
           <motion.div
             initial={{ opacity: 0, y: 16, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.6 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="absolute -bottom-5 -right-3 flex items-center gap-3 rounded-2xl border border-black/5 bg-white/90 px-4 py-3 shadow-xl backdrop-blur-sm sm:-right-6"
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="absolute -bottom-2 left-1/4 z-30 flex items-center gap-3 rounded-2xl bg-linear-to-br from-brand-500 to-brand-700 px-5 py-3 text-white shadow-xl shadow-brand-900/30"
           >
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-brand-500 to-brand-700 text-lg">
-              🇨🇦
+            <span className="font-serif text-3xl font-bold leading-none">
+              $200K+
             </span>
-            <div className="text-left">
-              <p className="text-sm font-bold text-black">Built from zero</p>
-              <p className="text-xs text-zinc-500">in Canada</p>
-            </div>
+            <span className="text-sm font-semibold leading-tight">
+              Earned
+              <br />
+              online
+            </span>
           </motion.div>
         </Reveal>
 
-        {/* Text */}
+        {/* ---------- Text ---------- */}
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -79,24 +160,23 @@ export default function About() {
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.p
-            variants={paragraph}
+            variants={item}
             className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-600"
           >
             My Story
           </motion.p>
 
           <motion.h2
-            variants={paragraph}
+            variants={item}
             className="mt-4 font-serif text-4xl leading-tight text-black sm:text-5xl"
           >
-            From{" "}
-            <em className="text-brand-600">immigrant worker</em> to building a
-            life online
+            From <em className="text-brand-600">immigrant worker</em> to building
+            a life online
           </motion.h2>
 
           <motion.div
-            variants={paragraph}
-            className="mt-7 space-y-5 text-lg leading-8 text-zinc-600"
+            variants={item}
+            className="mt-6 space-y-4 text-lg leading-8 text-zinc-600"
           >
             <p>
               I came to Canada as an immigrant and did what most people do — I
@@ -109,29 +189,57 @@ export default function About() {
               <strong className="font-semibold text-black">
                 family emergency changed everything.
               </strong>{" "}
-              I had to leave my job. And in that moment — when my one source of
-              income disappeared overnight — I realised something that shook me:{" "}
+              I had to leave my job — and when my one source of income
+              disappeared overnight, I realised{" "}
               <strong className="font-semibold text-black">
                 having just one income stream is never enough.
               </strong>{" "}
-              Because life does not warn you before it flips everything upside
-              down.
-            </p>
-            <p>
               That moment pushed me to figure out how to make money online — not
               just one way, but multiple ways. I started from zero, learned
-              everything from scratch, made mistakes, and kept going. Eventually
-              I built{" "}
-              <strong className="font-semibold text-black">
-                4 income streams online
-              </strong>{" "}
-              and crossed over $200K in total earnings.
-            </p>
-            <p>
-              Now I teach others how to do the same — with a proper structured
-              path, not random videos and guesswork.
+              everything from scratch, and kept going. Now I teach others how to
+              do the same — with a proper structured path, not random videos and
+              guesswork.
             </p>
           </motion.div>
+
+          {/* Feature grid */}
+          <motion.div
+            variants={item}
+            className="mt-8 grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2"
+          >
+            {features.map((f) => (
+              <div key={f.label} className="flex items-center gap-3">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-red-500 via-brand-500 to-yellow-400 text-white shadow-md">
+                  <Check />
+                </span>
+                <span className="font-semibold text-black">{f.label}</span>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* CTA */}
+          <motion.a
+            variants={item}
+            href="#the-program"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            className="group mt-10 inline-flex items-center gap-2 rounded-none rounded-tl-3xl rounded-br-3xl bg-black px-8 py-4 text-sm font-semibold uppercase tracking-wider text-white shadow-xl shadow-black/25 transition-all hover:bg-zinc-800 hover:shadow-2xl"
+          >
+            Discover More
+            <svg
+              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+              viewBox="0 0 16 16"
+              fill="none"
+            >
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </motion.a>
         </motion.div>
       </div>
     </section>

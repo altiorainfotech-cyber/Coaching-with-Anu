@@ -95,13 +95,7 @@ function PlanCard({ plan }: { plan: Plan }) {
       <ul className="mt-7 flex-1 space-y-3">
         {plan.features.map((f) => (
           <li key={f} className="flex items-start gap-3 text-[15px] text-zinc-700">
-            <span
-              className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-white ${
-                plan.popular
-                  ? "bg-linear-to-br from-brand-500 to-brand-700"
-                  : "bg-brand-600"
-              }`}
-            >
+            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-red-500 via-brand-500 to-yellow-400 text-white">
               <Check className="h-3 w-3" />
             </span>
             {f}
@@ -113,11 +107,7 @@ function PlanCard({ plan }: { plan: Plan }) {
         href="#pricing"
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className={`mt-8 inline-flex items-center justify-center rounded-full px-6 py-3.5 text-base font-semibold transition-shadow ${
-          plan.popular
-            ? "bg-linear-to-br from-brand-600 to-brand-700 text-white shadow-lg shadow-brand-600/30 ring-1 ring-inset ring-white/20 hover:shadow-xl hover:shadow-brand-600/40"
-            : "bg-black text-white hover:bg-zinc-800"
-        }`}
+        className="mt-8 inline-flex items-center justify-center rounded-none rounded-tl-3xl rounded-br-3xl bg-black px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-black/25 ring-1 ring-inset ring-white/15 transition-all hover:bg-zinc-800 hover:shadow-xl"
       >
         {plan.cta}
       </motion.a>

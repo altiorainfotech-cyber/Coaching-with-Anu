@@ -123,7 +123,7 @@ export default function Hero() {
 
         <motion.h1
           variants={headline}
-          className="mt-6 text-4xl font-bold leading-[1.15] tracking-tight text-white sm:text-6xl"
+          className="mt-6 font-sora text-4xl font-bold leading-[1.12] tracking-tight text-white sm:text-6xl"
         >
           {LINE_ONE.map((w, i) => (
             <Fragment key={`l1-${i}`}>
@@ -166,7 +166,7 @@ export default function Hero() {
             href="#the-program"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            className="group inline-flex items-center gap-2 rounded-full bg-linear-to-br from-brand-500 to-brand-700 px-7 py-3.5 text-base font-semibold text-white shadow-[0_8px_30px_rgba(37,99,235,0.5)] ring-1 ring-inset ring-white/25 transition-shadow hover:shadow-[0_8px_45px_rgba(37,99,235,0.7)]"
+            className="group inline-flex items-center gap-2 rounded-none rounded-tl-3xl rounded-br-3xl bg-black px-7 py-3.5 text-base font-semibold text-white shadow-[0_8px_30px_rgba(0,0,0,0.55)] ring-1 ring-inset ring-white/25 transition-all hover:bg-zinc-900 hover:shadow-[0_8px_45px_rgba(0,0,0,0.7)]"
           >
             Start Your Journey
             <svg
@@ -188,7 +188,7 @@ export default function Hero() {
             href="#my-story"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-base font-semibold text-white backdrop-blur-md transition-colors hover:border-brand-300/60 hover:bg-white/10"
+            className="inline-flex items-center gap-2 rounded-none rounded-tl-3xl rounded-br-3xl border border-white/20 bg-white/5 px-7 py-3.5 text-base font-semibold text-white backdrop-blur-md transition-colors hover:border-white/40 hover:bg-white/10"
           >
             <svg className="h-4 w-4" viewBox="0 0 16 16" fill="currentColor">
               <path d="M5 3.5v9l7-4.5-7-4.5Z" />

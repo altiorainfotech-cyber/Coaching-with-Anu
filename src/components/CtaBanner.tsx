@@ -7,7 +7,7 @@ export default function CtaBanner() {
   return (
     <section
       id="get-started"
-      className="relative scroll-mt-24 bg-linear-to-b from-brand-50/60 to-white px-6 py-24 sm:py-28"
+      className="relative scroll-mt-24 bg-linear-to-b from-brand-50/60 to-white px-6 pb-24 pt-0 sm:pb-28"
     >
       <div className="mx-auto max-w-5xl">
         <div className="relative overflow-hidden rounded-[2.25rem] bg-linear-to-br from-brand-500 via-brand-600 to-brand-700 px-6 py-16 text-center text-white shadow-2xl shadow-brand-600/30 sm:px-16 sm:py-20">
@@ -48,7 +48,7 @@ export default function CtaBanner() {
               href="#pricing"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              className="group mt-10 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-base font-semibold text-brand-700 shadow-xl shadow-brand-900/20 transition-shadow hover:shadow-2xl"
+              className="group mt-10 inline-flex items-center gap-2 rounded-none rounded-tl-3xl rounded-br-3xl bg-black px-8 py-4 text-base font-semibold text-white shadow-xl shadow-black/30 ring-1 ring-inset ring-white/15 transition-all hover:bg-zinc-900 hover:shadow-2xl"
             >
               Choose Your Plan &amp; Start Today
               <svg

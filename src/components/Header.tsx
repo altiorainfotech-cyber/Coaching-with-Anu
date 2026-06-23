@@ -94,7 +94,7 @@ export default function Header() {
               href="#pricing"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              className="hidden whitespace-nowrap rounded-full bg-linear-to-br from-brand-600 to-brand-700 px-7 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/30 ring-1 ring-inset ring-white/20 transition-shadow hover:shadow-xl hover:shadow-brand-600/40 sm:inline-block"
+              className="hidden whitespace-nowrap rounded-none rounded-tl-2xl rounded-br-2xl bg-black px-7 py-2.5 text-sm font-semibold text-white shadow-lg shadow-black/25 ring-1 ring-inset ring-white/15 transition-all hover:bg-zinc-800 hover:shadow-xl sm:inline-block"
             >
               Join the Program
             </motion.a>
@@ -175,7 +175,7 @@ export default function Header() {
               <a
                 href="#pricing"
                 onClick={() => setMenuOpen(false)}
-                className="mt-2 block rounded-xl bg-linear-to-br from-brand-600 to-brand-700 px-4 py-3 text-center text-base font-semibold text-white shadow-lg shadow-brand-600/30"
+                className="mt-2 block rounded-none rounded-tl-2xl rounded-br-2xl bg-black px-4 py-3 text-center text-base font-semibold text-white shadow-lg shadow-black/25"
               >
                 Join the Program
               </a>
