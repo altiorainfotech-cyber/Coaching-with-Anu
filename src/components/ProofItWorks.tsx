@@ -3,6 +3,7 @@
 import Image, { type StaticImageData } from "next/image";
 import { motion } from "motion/react";
 import Reveal from "./Reveal";
+import SplineScene from "./SplineScene";
 import shot1 from "../../public/screenshort01.jpg";
 import shot2 from "../../public/screenshort02jpg.jpg";
 
@@ -53,35 +54,29 @@ export default function ProofItWorks() {
   return (
     <section
       id="proof-it-works"
-      className="relative scroll-mt-24 overflow-hidden bg-linear-to-b from-white via-brand-50/40 to-brand-100/60 py-28 text-black sm:py-36"
+      className="relative scroll-mt-24 overflow-hidden bg-[#160016] py-28 text-white sm:py-36"
     >
-      {/* Decorative glows */}
-      <motion.div
+      {/* Animated Spline 3D background */}
+      <SplineScene />
+      {/* Readability scrim — darkens the scene behind the text/cards */}
+      <div
         aria-hidden
-        animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -left-20 top-16 h-96 w-96 rounded-full bg-brand-200/50 blur-3xl"
-      />
-      <motion.div
-        aria-hidden
-        animate={{ x: [0, -40, 0], y: [0, 30, 0] }}
-        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -right-16 bottom-10 h-[26rem] w-[26rem] rounded-full bg-brand-300/40 blur-3xl"
+        className="pointer-events-none absolute inset-0 bg-[#160016]/40"
       />
 
       <div className="relative mx-auto max-w-5xl px-6">
         {/* Header */}
         <Reveal direction="up" className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-600 shadow-sm">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-amber-300 shadow-sm backdrop-blur-sm">
             Proof It Works
           </span>
-          <h2 className="mt-6 font-serif text-4xl leading-[1.1] text-black sm:text-6xl">
+          <h2 className="mt-6 font-serif text-4xl leading-[1.1] text-white sm:text-6xl">
             Real income.{" "}
-            <em className="bg-linear-to-r from-brand-500 to-brand-700 bg-clip-text text-transparent">
+            <em className="bg-linear-to-r from-amber-300 to-fuchsia-400 bg-clip-text text-transparent">
               Real results.
             </em>
           </h2>
-          <p className="mx-auto mt-6 max-w-lg text-lg leading-8 text-zinc-600">
+          <p className="mx-auto mt-6 max-w-lg text-lg leading-8 text-zinc-300">
             These are real income screenshots from my own dashboards.
           </p>
         </Reveal>
@@ -176,7 +171,7 @@ export default function ProofItWorks() {
         {/* Reassurance line */}
         <Reveal
           direction="up"
-          className="mx-auto mt-16 max-w-md text-center text-sm text-zinc-500"
+          className="mx-auto mt-16 max-w-md text-center text-sm text-zinc-400"
         >
           Unedited and taken directly from my own accounts — this is what a
           structured path actually produces.
