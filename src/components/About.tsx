@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import anuPhoto from "../../public/anu-BTUDadeL.jpg";
+import anuPhoto from "../../public/image.jpeg";
 import Reveal from "./Reveal";
 
 const stagger = {
