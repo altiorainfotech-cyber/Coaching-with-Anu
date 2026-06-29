@@ -4,7 +4,7 @@ const NAV = [
   { label: "The Program", href: "#the-program" },
   { label: "Multiple Income Streams", href: "#multiple-income-streams" },
   { label: "Proof It Works", href: "#proof-it-works" },
-  { label: "Student Results", href: "#student-results" },
+  { label: "Student Results", href: "#student-spotlights" },
   { label: "Community", href: "#community" },
   { label: "Choose Your Path", href: "#pricing" },
 ];

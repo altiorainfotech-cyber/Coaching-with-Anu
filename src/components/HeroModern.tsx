@@ -3,7 +3,7 @@
 import { Fragment, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, type Variants } from "motion/react";
-import anuPhoto from "../../public/anu-BTUDadeL.jpg";
+import anuPhoto from "../../public/image.jpeg";
 
 /** Live canvas constellation — moving nodes connected by lines + cursor pull. */
 function ParticleField() {
