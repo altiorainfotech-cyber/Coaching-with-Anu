@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import anuPhoto from "../../public/image.jpeg";
 import Reveal from "./Reveal";
+import PaintDrip from "./PaintDrip";
 
 const stagger = {
   hidden: {},
@@ -56,7 +57,10 @@ export default function About() {
         className="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-brand-100/50 blur-3xl"
       />
 
-      <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 lg:grid-cols-2 lg:gap-20">
+      {/* Paint-dripping ink effect — animates in on scroll */}
+      <PaintDrip className="pointer-events-none absolute inset-0 h-full w-full" />
+
+      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-16 px-6 lg:grid-cols-2 lg:gap-20">
         {/* ---------- Image collage ---------- */}
         <Reveal
           direction="right"
