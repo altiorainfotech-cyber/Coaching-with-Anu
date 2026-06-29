@@ -7,22 +7,22 @@ export default function CtaBanner() {
   return (
     <section
       id="get-started"
-      className="relative scroll-mt-24 bg-linear-to-b from-brand-50/60 to-white px-6 pb-24 pt-0 sm:pb-28"
+      className="relative scroll-mt-24 bg-white px-6 py-24 sm:py-28"
     >
       <div className="mx-auto max-w-5xl">
-        <div className="relative overflow-hidden rounded-[2.25rem] bg-linear-to-br from-brand-500 via-brand-600 to-brand-700 px-6 py-16 text-center text-white shadow-2xl shadow-brand-600/30 sm:px-16 sm:py-20">
+        <div className="relative overflow-hidden rounded-[2.25rem] bg-[#060a18] px-6 py-16 text-center text-white shadow-2xl shadow-brand-900/40 sm:px-16 sm:py-20">
           {/* Decorative animated glows */}
           <motion.div
             aria-hidden
             animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
             transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-            className="pointer-events-none absolute -left-16 -top-16 h-72 w-72 rounded-full bg-white/15 blur-3xl"
+            className="pointer-events-none absolute -left-16 -top-16 h-72 w-72 rounded-full bg-brand-400/35 blur-3xl"
           />
           <motion.div
             aria-hidden
             animate={{ x: [0, -40, 0], y: [0, -30, 0] }}
             transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-            className="pointer-events-none absolute -bottom-20 -right-10 h-80 w-80 rounded-full bg-brand-300/30 blur-3xl"
+            className="pointer-events-none absolute -bottom-20 -right-10 h-80 w-80 rounded-full bg-brand-300/35 blur-3xl"
           />
           {/* Subtle grid */}
           <div
@@ -45,12 +45,14 @@ export default function CtaBanner() {
             </p>
 
             <motion.a
-              href="#pricing"
+              href="https://instagram.com/growursocials_withanu"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               className="group mt-10 inline-flex items-center gap-2 rounded-none rounded-tl-3xl rounded-br-3xl bg-black px-8 py-4 text-base font-semibold text-white shadow-xl shadow-black/30 ring-1 ring-inset ring-white/15 transition-all hover:bg-zinc-900 hover:shadow-2xl"
             >
-              Choose Your Plan &amp; Start Today
+              Join the Program
               <svg
                 className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
                 viewBox="0 0 16 16"

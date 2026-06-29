@@ -2,54 +2,65 @@
 
 import { motion } from "motion/react";
 import Reveal from "./Reveal";
+import VantaBirds from "./VantaBirds";
 
-type Problem = {
-  index: string;
+type TimelineStep = {
   title: string;
   body: string;
   icon: React.ReactNode;
 };
 
-const PROBLEMS: Problem[] = [
+const TIMELINE: TimelineStep[] = [
   {
-    index: "01",
-    title: "The YouTube Trap",
-    body: "You watch video after video, but every creator teaches something different. You get confused, overwhelmed, and end up doing nothing — because you don't know which advice to follow.",
+    title: "Started with a Dream",
+    body: "Left home to build a better future in Canada.",
+    // sparkle / star
     icon: (
-      <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h7A2.5 2.5 0 0 1 15 6.5v.6l4-2.3v10.4l-4-2.3v.6A2.5 2.5 0 0 1 12.5 16h-7A2.5 2.5 0 0 1 3 13.5v-7Z" />
+      <path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2L12 3z" />
     ),
   },
   {
-    index: "02",
-    title: "The Canva Tutorial Spiral",
-    body: "You spend hours learning design tools, but nobody teaches you how to actually sell anything. Beautiful content means nothing if there's no strategy behind it.",
+    title: "Faced the Reality",
+    body: "Balancing studies, work, expenses, and uncertainty wasn't easy.",
+    // briefcase
     icon: (
-      <path d="M10 2a8 8 0 1 0 0 16c1 0 1.7-.8 1.7-1.7 0-.4-.2-.8-.5-1.1-.3-.3-.5-.7-.5-1.1 0-.9.8-1.6 1.7-1.6H14a4 4 0 0 0 4-4c0-3.6-3.6-6.5-8-6.5Zm-4 8a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Zm2.5-3.3A1.3 1.3 0 1 1 8.5 4a1.3 1.3 0 0 1 0 2.7Zm4 0A1.3 1.3 0 1 1 12.5 4a1.3 1.3 0 0 1 0 2.7Z" />
+      <>
+        <path d="M4 8h16v11H4z" />
+        <path d="M9 8V6a2 2 0 012-2h2a2 2 0 012 2v2" />
+      </>
+    ),
+  },
+  {
+    title: "Discovered Digital Income",
+    body: "Found a business model that wasn't limited by hourly wages.",
+    // lightbulb
+    icon: (
+      <>
+        <path d="M9.5 18h5M10.5 21h3" />
+        <path d="M12 3a6 6 0 00-3.5 10.9c.6.4 1 1.1 1 1.8h5c0-.7.4-1.4 1-1.8A6 6 0 0012 3z" />
+      </>
+    ),
+  },
+  {
+    title: "Built an Online Brand",
+    body: "Started creating content, learning marketing, and helping others.",
+    // rocket
+    icon: (
+      <>
+        <path d="M12 2c2.8 2 4 4.8 4 7.5 0 1.5-.4 2.9-1 4.1l-3 2-3-2c-.6-1.2-1-2.6-1-4.1C8 6.8 9.2 4 12 2z" />
+        <path d="M9 15l-2 2m8-2l2 2" />
+      </>
+    ),
+  },
+  {
+    title: "Now I Teach Others",
+    body: "Helping everyday people build online income with confidence.",
+    // heart
+    icon: (
+      <path d="M12 20s-6.5-4.2-9-8C1.5 9.3 3 6 6.3 6 8.4 6 12 8.5 12 8.5S15.6 6 17.7 6C21 6 22.5 9.3 21 12c-2.5 3.8-9 8-9 8z" />
     ),
   },
 ];
-
-const BENEFITS = [
-  "A proven path to follow",
-  "The steps in the right order",
-  "A real mentor who's done it",
-  "A community around you",
-  "Accountability to follow through",
-];
-
-const list = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.15 } },
-};
-
-const card = {
-  hidden: { opacity: 0, y: 60 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const },
-  },
-};
 
 const checkList = {
   hidden: {},
@@ -83,129 +94,83 @@ export default function WhyEducation() {
   return (
     <section
       id="why-education-matters"
-      className="relative scroll-mt-24 overflow-hidden bg-linear-to-b from-brand-50 via-white to-brand-100/60 py-28 text-black sm:py-36"
+      className="relative scroll-mt-24 overflow-hidden bg-[#060a18] py-28 text-white sm:py-36"
     >
-      {/* Animated background blobs */}
-      <motion.div
-        aria-hidden
-        animate={{ x: [0, 50, 0], y: [0, -40, 0], scale: [1, 1.12, 1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -left-24 top-0 h-[30rem] w-[30rem] rounded-full bg-brand-200/55 blur-3xl"
-      />
-      <motion.div
-        aria-hidden
-        animate={{ x: [0, -40, 0], y: [0, 40, 0], scale: [1, 1.18, 1] }}
-        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -right-20 bottom-0 h-[26rem] w-[26rem] rounded-full bg-brand-300/40 blur-3xl"
-      />
-      <motion.div
-        aria-hidden
-        animate={{ x: [0, 30, 0], y: [0, 30, 0] }}
-        transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute left-1/2 top-1/3 h-72 w-72 rounded-full bg-brand-100/70 blur-3xl"
-      />
-      {/* Subtle dot grid */}
+      {/* Vanta birds — live flocking background (demo-accurate, full strength) */}
+      <VantaBirds className="absolute inset-0 h-full w-full" />
+
+      {/* Soft scrim to keep copy readable over the flock */}
       <div
         aria-hidden
-        className="absolute inset-0 [background-image:radial-gradient(rgba(37,99,235,0.08)_1px,transparent_1px)] [background-size:28px_28px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(4,8,26,0.6),transparent_72%)]"
+      />
+
+      {/* Light-blue corner glows */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-24 -top-24 h-96 w-96 rounded-full bg-brand-400/25 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-brand-300/20 blur-3xl"
       />
 
       <div className="relative mx-auto max-w-6xl px-6">
         {/* Header */}
-        <Reveal direction="up" className="mx-auto max-w-3xl text-center">
+        <Reveal direction="up" className="mx-auto max-w-5xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-600 shadow-sm">
             Why Education Matters
           </span>
-          <h2 className="mt-6 font-serif text-4xl leading-[1.1] text-black sm:text-6xl">
-            Everyone is watching tutorials.{" "}
-            <em className="bg-linear-to-r from-brand-500 to-brand-700 bg-clip-text text-transparent">
-              Nobody is making money.
+          <h2 className="mt-6 font-serif text-4xl leading-[1.1] text-white sm:text-6xl">
+            Feeling Overwhelmed by All the{" "}
+            <em className="bg-linear-to-r from-brand-300 to-brand-100 bg-clip-text text-transparent">
+              Information Online?
             </em>
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-600">
-            Free content isn&apos;t education — it&apos;s entertainment. You can
-            watch hundreds of YouTube videos, follow 50 accounts, and download
-            every free Canva template, and still have{" "}
-            <span className="font-semibold text-black">
-              no idea what your actual next step is.
-            </span>
-          </p>
-        </Reveal>
-
-        {/* Problem cards */}
-        <motion.div
-          variants={list}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="mt-16 grid gap-5 [perspective:1400px] md:grid-cols-2"
-        >
-          {PROBLEMS.map((p) => (
-            <motion.div
-              key={p.title}
-              variants={card}
-              whileHover={{ y: -10 }}
-              transition={{ type: "spring", stiffness: 280, damping: 20 }}
-              className="group relative h-full overflow-hidden rounded-[1.75rem] border border-brand-100 bg-white p-8 shadow-sm transition-shadow duration-300 hover:border-transparent hover:shadow-[0_34px_80px_-26px_rgba(244,63,94,0.55)]"
-            >
-              {/* Bold gradient wash on hover */}
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-linear-to-br from-rose-500 via-rose-600 to-brand-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              />
-
-              {/* Big number watermark */}
-              <span
-                aria-hidden
-                className="pointer-events-none absolute -right-1 top-1 select-none bg-linear-to-br from-brand-500/20 to-brand-700/5 bg-clip-text font-serif text-[7.5rem] font-bold leading-none text-transparent transition-colors duration-300 group-hover:from-white/30 group-hover:to-white/10"
-              >
-                {p.index}
+          <div className="mt-8 space-y-5 text-left text-lg leading-8 text-white">
+            <p>
+              We live in a world where information is everywhere. Every day,
+              there&apos;s a new course, a new strategy, a new &ldquo;secret&rdquo;
+              to making money online. One person tells you to start Amazon,
+              another says dropshipping, someone else says crypto, trading,
+              affiliate marketing, or digital products.
+            </p>
+            <p>
+              With unlimited resources comes unlimited confusion. I know exactly
+              how that feels because I&apos;ve been there. When I first came to
+              Canada, I spent countless hours watching videos, reading posts, and
+              trying to figure out what was actually real and what was just
+              another internet trend. The hardest part wasn&apos;t finding
+              information&mdash;
+              <span className="font-semibold text-white">
+                it was knowing who to trust.
               </span>
-
-              <div className="relative">
-                <span className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-rose-200 bg-rose-50 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-rose-500 shadow-sm transition-colors duration-300 group-hover:border-white/30 group-hover:bg-white/15 group-hover:text-white">
-                  <svg className="h-3 w-3" viewBox="0 0 20 20" fill="none">
-                    <path
-                      d="M6 6l8 8M14 6l-8 8"
-                      stroke="currentColor"
-                      strokeWidth="2.4"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                  The trap
-                </span>
-
-                <span className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-red-500 via-brand-500 to-yellow-400 text-white shadow-lg shadow-brand-600/30 ring-1 ring-inset ring-white/20 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6 group-hover:shadow-black/20">
-                  <svg className="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
-                    {p.icon}
-                  </svg>
-                </span>
-
-                <h3 className="text-2xl font-bold text-black transition-colors duration-300 group-hover:text-white">
-                  {p.title}
-                </h3>
-                <p className="mt-3 leading-7 text-zinc-600 transition-colors duration-300 group-hover:text-rose-50">
-                  {p.body}
-                </p>
-
-                {/* Animated accent line */}
-                <span
-                  aria-hidden
-                  className="mt-6 block h-1 w-12 rounded-full bg-linear-to-r from-rose-400 to-brand-500 transition-all duration-300 group-hover:w-24 group-hover:from-white group-hover:to-white/70"
-                />
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+            </p>
+            <p>
+              That&apos;s why I created this platform. I&apos;m here to simplify
+              the process, cut through the noise, and guide you step by step. No
+              overwhelming jargon. No unrealistic promises. Just a clear roadmap
+              that helps you understand digital income, build the right skills,
+              and take action with confidence.
+            </p>
+            <p>
+              You don&apos;t need to learn everything. You just need to learn{" "}
+              <span className="font-semibold text-white">
+                the right things&mdash;from someone who&apos;s already walked the
+                path.
+              </span>
+            </p>
+          </div>
+        </Reveal>
 
         {/* Transition line */}
         <Reveal
           direction="up"
-          className="mx-auto mt-10 max-w-2xl text-center text-base text-zinc-500"
+          className="mx-auto mt-10 max-w-4xl text-center text-base text-zinc-400"
         >
           No structure. No sequence. No accountability. Every creator teaches
           something different — and you end up{" "}
-          <span className="font-medium text-zinc-800">
+          <span className="font-medium text-white">
             more confused than when you started.
           </span>
         </Reveal>
@@ -215,7 +180,7 @@ export default function WhyEducation() {
           <div className="relative overflow-hidden rounded-[1.75rem] p-[1.5px] shadow-[0_20px_60px_-20px_rgba(37,99,235,0.4)]">
             <span
               aria-hidden
-              className="absolute inset-[-150%] animate-[border-spin_8s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0%,#1d4ed8_12%,#60a5fa_22%,#93c5fd_28%,transparent_42%,transparent_100%)]"
+              className="absolute inset-[-150%] animate-[border-spin_8s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0%,#ef4444_12%,#f97316_20%,#facc15_28%,transparent_42%,transparent_100%)]"
             />
             <div className="relative grid gap-10 overflow-hidden rounded-[1.65rem] bg-linear-to-br from-white via-white to-brand-50/60 p-8 sm:p-12 lg:grid-cols-2 lg:items-center">
               {/* inner glows */}
@@ -233,25 +198,24 @@ export default function WhyEducation() {
                   <span className="flex h-4 w-4 items-center justify-center rounded-full bg-linear-to-br from-red-500 via-brand-500 to-yellow-400 text-white">
                     <Check />
                   </span>
-                  The path
+                  My Journey
                 </span>
                 <h3 className="mt-5 font-serif text-3xl leading-tight text-black sm:text-4xl">
-                  What proper education{" "}
+                  My{" "}
                   <em className="bg-linear-to-r from-brand-500 to-brand-700 bg-clip-text text-transparent">
-                    actually
+                    Story
                   </em>{" "}
-                  gives you
+                  Timeline
                 </h3>
                 <p className="mt-4 max-w-md leading-8 text-zinc-600">
-                  Proper education changes everything. It gives you a clear
-                  starting point, a step-by-step path, and someone who&apos;s
-                  already done it guiding you the whole way.
+                  From a one-way ticket to Canada to teaching others online —
+                  here&apos;s how the journey unfolded, one decision at a time.
                 </p>
                 <a
                   href="#the-program"
                   className="group mt-7 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50/70 px-5 py-2.5 text-sm font-semibold text-brand-700 shadow-sm transition-all duration-300 hover:gap-3 hover:border-brand-300 hover:bg-brand-100/70 hover:shadow-md"
                 >
-                  See exactly what you get inside the program
+                  Start your own journey
                   <svg
                     className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
                     viewBox="0 0 16 16"
@@ -268,40 +232,41 @@ export default function WhyEducation() {
                 </a>
               </div>
 
-              {/* Animated checklist */}
+              {/* Animated story timeline */}
               <motion.ul
                 variants={checkList}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true, amount: 0.4 }}
-                className="relative space-y-3"
+                viewport={{ once: true, amount: 0.3 }}
+                className="relative space-y-3 before:absolute before:left-[1.45rem] before:top-4 before:bottom-4 before:w-px before:bg-linear-to-b before:from-brand-200 before:via-brand-300 before:to-transparent"
               >
-                {BENEFITS.map((b) => (
+                {TIMELINE.map((t) => (
                   <motion.li
-                    key={b}
+                    key={t.title}
                     variants={checkItem}
-                    className="group/li flex items-center gap-3.5 rounded-2xl border border-brand-100 bg-white px-4 py-3.5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg hover:shadow-brand-900/5"
+                    className="group/li relative flex items-start gap-4 rounded-2xl border border-brand-100 bg-white px-4 py-3.5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg hover:shadow-brand-900/5"
                   >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-red-500 via-brand-500 to-yellow-400 text-white shadow-lg shadow-brand-600/30 transition-transform duration-300 group-hover/li:scale-110 group-hover/li:rotate-3">
-                      <Check />
-                    </span>
-                    <span className="font-semibold text-zinc-800 transition-colors group-hover/li:text-brand-800">
-                      {b}
-                    </span>
-                    <svg
-                      aria-hidden
-                      className="ml-auto h-4 w-4 -translate-x-2 text-brand-500 opacity-0 transition-all duration-300 group-hover/li:translate-x-0 group-hover/li:opacity-100"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                    >
-                      <path
-                        d="M3 8h10M9 4l4 4-4 4"
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-red-500 via-brand-500 to-yellow-400 text-white shadow-lg shadow-brand-600/30 transition-transform duration-300 group-hover/li:scale-110 group-hover/li:rotate-3">
+                      <svg
+                        className="h-5 w-5"
+                        viewBox="0 0 24 24"
+                        fill="none"
                         stroke="currentColor"
                         strokeWidth="1.8"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                      />
-                    </svg>
+                      >
+                        {t.icon}
+                      </svg>
+                    </span>
+                    <div>
+                      <p className="font-semibold text-zinc-900 transition-colors group-hover/li:text-brand-800">
+                        {t.title}
+                      </p>
+                      <p className="mt-0.5 text-sm leading-6 text-zinc-600">
+                        {t.body}
+                      </p>
+                    </div>
                   </motion.li>
                 ))}
               </motion.ul>

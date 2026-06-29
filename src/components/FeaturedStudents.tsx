@@ -1,12 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { StaticImageData } from "next/image";
 import styles from "./FeaturedStudents.module.css";
-import heera from "../../public/images/Student Results/testi-heera-v13kmUis.jpg";
-import jeleesha from "../../public/images/Student Results/testi-jeleesha-Cm5XXcYM.jpg";
-import riya from "../../public/images/Student Results/testi-riya-C2-OI_Kc.jpg";
-import student from "../../public/images/Student Results/testi-student-CCsZxebU.png";
 
 type Slide = {
   name: string;
@@ -14,50 +9,50 @@ type Slide = {
   quote: string;
   author: string;
   bg: string;
-  img: StaticImageData;
+  img: string;
 };
 
 const SLIDES: Slide[] = [
   {
-    name: "Jeleesha",
-    tag: "Digital Products",
+    name: "Build Freedom",
+    tag: "Beyond Income",
     quote:
-      "“I started with zero audience and no idea where to begin. The structured path made all the difference — instead of guessing, I followed the steps in order. Within three months I'd made my first $4,000 selling digital products, all while keeping my day job.”",
-    author: "— Jeleesha, course member since 2024",
+      "“Don't just build income. Build freedom. The goal isn't just to make more money — it's about something bigger than the numbers.”",
+    author: "— It starts with a bigger why",
     bg: "#16233b",
-    img: jeleesha,
+    img: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=900&q=80",
   },
   {
-    name: "Heera",
-    tag: "Affiliate Income",
+    name: "More Time",
+    tag: "Time Freedom",
     quote:
-      "“I'd wasted almost a year on free videos that left me more confused than when I started. Anu's program finally connected the dots. The community kept me accountable, and now affiliate income covers my rent every single month.”",
-    author: "— Heera, building her second income stream",
+      "“It's to create a life where your income isn't tied to your time — where earning no longer costs you every hour of your day.”",
+    author: "— Earn without trading every hour",
     bg: "#1f2937",
-    img: heera,
+    img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80",
   },
   {
-    name: "Riya",
-    tag: "Content Creator",
+    name: "More Choices",
+    tag: "On Your Terms",
     quote:
-      "“What changed everything for me was learning to treat this like a real education, not a side hobby. I show up, I do the work, and the results follow. I've grown an engaged audience and landed my first brand deals this year.”",
-    author: "— Riya, full-time creator",
+      "“Where you have more choices — the freedom to decide how, when, and where you live, work, and travel.”",
+    author: "— Your life, your rules",
     bg: "#2a2440",
-    img: riya,
+    img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80",
   },
   {
-    name: "Aanya",
-    tag: "Online Coaching",
+    name: "More Confidence",
+    tag: "Live Fully",
     quote:
-      "“Coming from a 9-to-5, I never imagined I could build something of my own. The proper structure gave me confidence to start coaching others. Four income streams later, I finally have the freedom I was chasing.”",
-    author: "— Aanya, now coaching her own students",
+      "“More freedom. More confidence. The quiet certainty that comes from building something that's truly yours.”",
+    author: "— The real goal",
     bg: "#11302b",
-    img: student,
+    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80",
   },
 ];
 
 const SPIN_DUR = 1000;
-const AUTOPLAY = 6000;
+const AUTOPLAY = 5000;
 const pad = (n: number) => String(n).padStart(2, "0");
 
 function ChevronUp() {
@@ -118,7 +113,7 @@ function Spinner({
                 className={styles.cLeft}
                 style={
                   side === "left"
-                    ? { backgroundImage: `url(${s.img.src})` }
+                    ? { backgroundImage: `url(${s.img})` }
                     : undefined
                 }
               >
@@ -218,7 +213,7 @@ export default function FeaturedStudents() {
     <section
       id="student-spotlights"
       aria-roledescription="carousel"
-      aria-label="Featured student spotlights"
+      aria-label="Build freedom"
       tabIndex={0}
       onKeyDown={onKeyDown}
       onMouseEnter={() => setPaused(true)}
@@ -227,7 +222,7 @@ export default function FeaturedStudents() {
       onBlur={() => setPaused(false)}
       className={`relative outline-none ${styles.carousel}`}
     >
-      <span className={styles.label}>Student Spotlights</span>
+      <span className={styles.label}>The Bigger Picture</span>
 
       <div className={stageCls}>
         <Spinner side="left" active={active} next={next} />
@@ -238,7 +233,7 @@ export default function FeaturedStudents() {
         <button
           type="button"
           className={styles.navBtn}
-          aria-label="Previous student"
+          aria-label="Previous"
           onClick={() => spin(-1)}
         >
           <ChevronUp />
@@ -260,7 +255,7 @@ export default function FeaturedStudents() {
         <button
           type="button"
           className={styles.navBtn}
-          aria-label="Next student"
+          aria-label="Next"
           onClick={() => spin(1)}
         >
           <ChevronDown />

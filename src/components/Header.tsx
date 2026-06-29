@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
+import logo from "../../public/logo.png";
 
 const NAV_ITEMS = [
   { label: "My Story", href: "#my-story" },
@@ -10,7 +12,6 @@ const NAV_ITEMS = [
   { label: "Multiple Income Streams", href: "#multiple-income-streams" },
   { label: "Proof It Works", href: "#proof-it-works" },
   { label: "Student Results", href: "#student-spotlights" },
-  { label: "Community", href: "#community" },
 ];
 
 export default function Header() {
@@ -54,18 +55,21 @@ export default function Header() {
           {/* Left — Logo */}
           <a
             href="#top"
-            className="group flex shrink-0 items-center gap-2.5 justify-self-start"
+            className="flex shrink-0 flex-col items-start gap-1 justify-self-start leading-tight"
             aria-label="Coaching with Anu — home"
           >
+            <Image
+              src={logo}
+              alt="Coaching with Anu"
+              priority
+              className="h-10 w-10 rounded-xl bg-white object-contain p-1 shadow-sm ring-1 ring-black/5 sm:h-11 sm:w-11"
+            />
             <span
-              className={`text-lg font-semibold tracking-tight transition-colors ${
-                solid ? "text-black" : "text-white"
+              className={`hidden whitespace-nowrap text-[11px] font-medium transition-colors sm:block ${
+                solid ? "text-zinc-500" : "text-zinc-300"
               }`}
             >
-              Coaching{" "}
-              <span className={solid ? "text-brand-600" : "text-brand-300"}>
-                with Anu
-              </span>
+              From international student to digital entrepreneur.
             </span>
           </a>
 
@@ -91,7 +95,7 @@ export default function Header() {
           {/* Right — CTA + mobile toggle */}
           <div className="flex shrink-0 items-center gap-2 justify-self-end">
             <motion.a
-              href="#pricing"
+              href="#get-started"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               className="hidden whitespace-nowrap rounded-none rounded-tl-2xl rounded-br-2xl bg-black px-7 py-2.5 text-sm font-semibold text-white shadow-lg shadow-black/25 ring-1 ring-inset ring-white/15 transition-all hover:bg-zinc-800 hover:shadow-xl sm:inline-block"
@@ -173,7 +177,7 @@ export default function Header() {
                 ))}
               </ul>
               <a
-                href="#pricing"
+                href="#get-started"
                 onClick={() => setMenuOpen(false)}
                 className="mt-2 block rounded-none rounded-tl-2xl rounded-br-2xl bg-black px-4 py-3 text-center text-base font-semibold text-white shadow-lg shadow-black/25"
               >
