@@ -24,32 +24,11 @@ const item = {
 const SECONDARY_PHOTO =
   "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=700&q=80";
 
-const features = [
-  { label: "4 income streams", color: "from-rose-400 to-rose-500" },
-  { label: "Online learning", color: "from-violet-500 to-violet-600" },
-  { label: "$200K+ earned", color: "from-amber-400 to-orange-500" },
-  { label: "Structured path", color: "from-teal-400 to-teal-500" },
-];
-
-function Check() {
-  return (
-    <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none">
-      <path
-        d="M3.5 8.5l3 3 6-7"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 export default function About() {
   return (
     <section
       id="my-story"
-      className="relative scroll-mt-24 overflow-hidden bg-white py-24 sm:py-32"
+      className="relative scroll-mt-24 overflow-hidden bg-linear-to-b from-white to-brand-50/60 py-24 sm:py-32"
     >
       {/* Soft brand wash */}
       <div
@@ -167,15 +146,14 @@ export default function About() {
             variants={item}
             className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-600"
           >
-            My Story
+            About Me
           </motion.p>
 
           <motion.h2
             variants={item}
             className="mt-4 font-serif text-4xl leading-tight text-black sm:text-5xl"
           >
-            From <em className="text-brand-600">immigrant worker</em> to building
-            a life online
+            Hi, I&rsquo;m <em className="text-brand-600">Anisha</em> 👋
           </motion.h2>
 
           <motion.div
@@ -183,42 +161,29 @@ export default function About() {
             className="mt-6 space-y-4 text-lg leading-8 text-zinc-600"
           >
             <p>
-              I came to Canada as an immigrant and did what most people do — I
-              worked. I worked at Tim Hortons. I worked at Walmart. I took every
-              opportunity I could find and slowly climbed the corporate ladder.
-              From the outside, it looked like progress.
+              A few years ago, I landed in Canada as an international student.
+              Like many students, I was juggling studies, work, bills, and trying
+              to figure out how to build a better future. I knew I wanted more
+              than just surviving from paycheck to paycheck.
             </p>
             <p>
-              But then a{" "}
+              I tried different ways to make money online, but most of them
+              either didn&rsquo;t work or weren&rsquo;t sustainable. Then I found{" "}
               <strong className="font-semibold text-black">
-                family emergency changed everything.
+                digital products and online business.
               </strong>{" "}
-              I had to leave my job — and when my one source of income
-              disappeared overnight, I realised{" "}
+              It completely changed how I looked at earning money. Instead of
+              trading time for income, I learned how to build{" "}
               <strong className="font-semibold text-black">
-                having just one income stream is never enough.
+                digital assets that could continue generating revenue
               </strong>{" "}
-              That moment pushed me to figure out how to make money online — not
-              just one way, but multiple ways. I started from zero, learned
-              everything from scratch, and kept going. Now I teach others how to
-              do the same — with a proper structured path, not random videos and
-              guesswork.
+              while I studied, worked, travelled, or spent time with family.
             </p>
-          </motion.div>
-
-          {/* Feature grid */}
-          <motion.div
-            variants={item}
-            className="mt-8 grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2"
-          >
-            {features.map((f) => (
-              <div key={f.label} className="flex items-center gap-3">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-red-500 via-brand-500 to-yellow-400 text-white shadow-md">
-                  <Check />
-                </span>
-                <span className="font-semibold text-black">{f.label}</span>
-              </div>
-            ))}
+            <p>
+              Now my mission is simple: to help ambitious people&mdash;especially
+              students, immigrants, and beginners&mdash;learn the same skills so
+              they can create financial freedom on their own terms.
+            </p>
           </motion.div>
 
           {/* CTA */}

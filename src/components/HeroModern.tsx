@@ -3,7 +3,7 @@
 import { Fragment, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, type Variants } from "motion/react";
-import anuPhoto from "../../public/image.jpeg";
+import anuPhoto from "../../public/heroimage.jpeg";
 
 /** Live canvas constellation — moving nodes connected by lines + cursor pull. */
 function ParticleField() {
@@ -229,14 +229,11 @@ const word: Variants = {
   },
 };
 
-const LINE_ONE = ["Stop", "learning", "from", "random", "videos."];
+const LINE_ONE = ["Turn", "Your", "Story"];
 const LINE_TWO: { t: string; h?: boolean }[] = [
-  { t: "Start" },
-  { t: "with" },
-  { t: "proper", h: true },
-  { t: "education", h: true },
-  { t: "that" },
-  { t: "works." },
+  { t: "Into" },
+  { t: "Your", h: true },
+  { t: "Income.", h: true },
 ];
 
 const AVATARS = [12, 32, 45, 60, 5];
@@ -309,14 +306,27 @@ export default function HeroModern() {
             ))}
           </motion.h1>
 
-          <motion.p
+          <motion.div
             variants={item}
-            className="mt-6 max-w-lg text-lg leading-8 text-zinc-300"
+            className="mt-6 max-w-lg space-y-4 text-lg leading-8 text-zinc-300"
           >
-            Most people waste months on free YouTube tutorials going nowhere.
-            Structured education gives you the exact steps, in the right order —
-            so you actually start building real income online.
-          </motion.p>
+            <p>
+              I came to Canada as an international student with big dreams,
+              limited resources, and no roadmap. I tried different jobs, explored
+              different opportunities, and kept searching for a way to build
+              financial freedom without trading every hour for money.
+            </p>
+            <p>
+              That&rsquo;s when I discovered digital income. Today, I&rsquo;m
+              helping people create an online income stream using digital
+              products, personal branding, and simple systems that actually
+              work&mdash;even if you&rsquo;re starting from zero.
+            </p>
+            <p className="font-medium text-white">
+              Your background doesn&rsquo;t determine your future. Your next
+              decision does.
+            </p>
+          </motion.div>
 
           {/* CTAs */}
           <motion.div
@@ -329,7 +339,7 @@ export default function HeroModern() {
               whileTap={{ scale: 0.97 }}
               className="group inline-flex items-center gap-2 rounded-none rounded-tl-3xl rounded-br-3xl bg-black px-7 py-3.5 text-base font-semibold text-white shadow-[0_8px_30px_rgba(0,0,0,0.55)] ring-1 ring-inset ring-white/25 transition-all hover:bg-zinc-900 hover:shadow-[0_8px_45px_rgba(0,0,0,0.7)]"
             >
-              Start Your Journey
+              Start Your Digital Journey
               <svg
                 className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
                 viewBox="0 0 16 16"

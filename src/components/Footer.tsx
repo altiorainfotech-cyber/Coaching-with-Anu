@@ -1,3 +1,6 @@
+import Image from "next/image";
+import logo from "../../public/logo.png";
+
 const NAV = [
   { label: "My Story", href: "#my-story" },
   { label: "Why Education Matters", href: "#why-education-matters" },
@@ -5,26 +8,38 @@ const NAV = [
   { label: "Multiple Income Streams", href: "#multiple-income-streams" },
   { label: "Proof It Works", href: "#proof-it-works" },
   { label: "Student Results", href: "#student-spotlights" },
-  { label: "Community", href: "#community" },
-  { label: "Choose Your Path", href: "#pricing" },
 ];
 
 const INSTAGRAM = "https://instagram.com/growursocials_withanu";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-linear-to-b from-brand-900 to-[#0c1838] text-white">
-      <div className="mx-auto max-w-6xl px-6 py-16">
+    <footer className="relative overflow-hidden border-t border-white/10 bg-[#060a18] text-white">
+      {/* Light-blue corner glows */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-brand-400/20 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-24 -right-20 h-80 w-80 rounded-full bg-brand-300/15 blur-3xl"
+      />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-10 md:grid-cols-[1.2fr_1.6fr] md:gap-16">
           {/* Brand */}
           <div>
-            <a
-              href="#top"
-              className="text-lg font-semibold tracking-tight text-white"
-            >
-              Coaching <span className="text-brand-300">with Anu</span>
+            <a href="#top" className="inline-block" aria-label="Coaching with Anu — home">
+              <Image
+                src={logo}
+                alt="Coaching with Anu"
+                className="h-16 w-16 rounded-xl bg-white object-contain p-1.5 shadow-sm"
+              />
             </a>
-            <p className="mt-4 max-w-sm text-sm leading-7 text-brand-100/70">
+            <p className="mt-3 text-xs font-medium text-white/80">
+              From international student to digital entrepreneur.
+            </p>
+            <p className="mt-4 max-w-sm text-sm leading-7 text-white/80">
               Structured online business education with a real mentor — so you
               stop guessing and start building multiple income streams.
             </p>
@@ -47,7 +62,7 @@ export default function Footer() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm text-brand-100/80 transition-colors hover:text-white"
+                className="text-sm text-white/85 transition-colors hover:text-white"
               >
                 {item.label}
               </a>
@@ -56,13 +71,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 border-t border-white/10 pt-6 text-center text-sm text-brand-100/60">
+        <div className="mt-14 border-t border-white/10 pt-6 text-center text-sm text-white/70">
           © 2026 Online Business Coaching with Anu ·{" "}
           <a
             href={INSTAGRAM}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-brand-300 transition-colors hover:text-white"
+            className="font-medium text-white transition-colors hover:text-white/80"
           >
             @growursocials_withanu
           </a>
