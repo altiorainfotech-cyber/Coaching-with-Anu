@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import styles from "./ShowcaseCards.module.css";
 
 type Card = {
@@ -35,6 +38,25 @@ const CARDS: Card[] = [
 ];
 
 export default function ShowcaseCards() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setShown(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.2 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <section id="showcase" className={styles.stage}>
       {/* Distinct animated backdrop */}
@@ -55,7 +77,20 @@ export default function ShowcaseCards() {
         <div className={styles.vignette} />
       </div>
 
-      <div className={styles.container}>
+      {/* Heading */}
+      <div className="pointer-events-none absolute inset-x-0 top-[7%] z-10 px-6 text-center">
+        <h2 className="font-serif text-4xl leading-tight text-white sm:text-5xl">
+          Choose Your{" "}
+          <em className="bg-linear-to-r from-brand-300 to-brand-100 bg-clip-text text-transparent">
+            Path
+          </em>
+        </h2>
+      </div>
+
+      <div
+        ref={ref}
+        className={`${styles.container} ${shown ? styles.show : ""}`}
+      >
         {CARDS.map((card) => (
           <a
             key={card.box}
