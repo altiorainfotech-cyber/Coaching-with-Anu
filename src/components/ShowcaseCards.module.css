@@ -4,6 +4,7 @@
 
 .stage {
   position: relative;
+  scroll-margin-top: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -273,6 +274,31 @@
 
 .container img {
   width: 216px;
+}
+
+/* Responsive: flatten the 3D and let cards wrap on tablet/mobile */
+@media (max-width: 1023px) {
+  .stage {
+    flex-direction: column;
+    min-height: auto;
+    padding: 5rem 0 4rem;
+    perspective: none;
+  }
+  .container {
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    padding: 0 1.25rem;
+    justify-content: center;
+    gap: 2.5rem;
+    transform: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .container img {
+    width: 200px;
+  }
 }
 
 .box {

@@ -275,7 +275,7 @@ export default function HeroModern() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-400" />
             </span>
-            Online Business Education by Anu
+            Online Business Education by Anisha
           </motion.span>
 
           <motion.h1
@@ -421,7 +421,7 @@ export default function HeroModern() {
             <div className="overflow-hidden rounded-[1.9rem] ring-1 ring-white/10">
               <Image
                 src={anuPhoto}
-                alt="Anu, founder of Coaching with Anu"
+                alt="Anisha, founder of Coaching with Anisha"
                 placeholder="blur"
                 priority
                 sizes="(max-width: 1024px) 90vw, 28rem"

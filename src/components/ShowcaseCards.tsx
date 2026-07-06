@@ -78,7 +78,7 @@ export default function ShowcaseCards() {
       </div>
 
       {/* Heading */}
-      <div className="pointer-events-none absolute inset-x-0 top-[7%] z-10 px-6 text-center">
+      <div className="relative z-10 px-6 pb-10 text-center lg:pointer-events-none lg:absolute lg:inset-x-0 lg:top-[7%] lg:pb-0">
         <h2 className="font-serif text-4xl leading-tight text-white sm:text-5xl">
           Choose Your{" "}
           <em className="bg-linear-to-r from-brand-300 to-brand-100 bg-clip-text text-transparent">
