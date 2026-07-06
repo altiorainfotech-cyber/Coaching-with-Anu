@@ -45,7 +45,7 @@ export default function CtaBanner() {
             </p>
 
             <motion.a
-              href="https://instagram.com/growursocials_withanu"
+              href="https://instagram.com/anishaxsidhu"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.04 }}
