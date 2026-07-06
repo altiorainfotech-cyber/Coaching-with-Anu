@@ -187,12 +187,12 @@ export default function Pricing() {
         >
           <span>💬 Questions? DM Anu on Instagram</span>
           <a
-            href="https://instagram.com/growursocials_withanu"
+            href="https://instagram.com/anishaxsidhu"
             target="_blank"
             rel="noopener noreferrer"
             className="font-semibold text-brand-600 transition-colors hover:text-brand-700"
           >
-            @growursocials_withanu
+            @Anishaxsidhu
           </a>
         </Reveal>
       </div>
