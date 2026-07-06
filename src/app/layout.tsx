@@ -29,9 +29,9 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: "Coaching with Anu",
+  title: "Coaching with Anisha",
   description:
-    "Learn to build multiple income streams with Anu's proven coaching program.",
+    "Learn to build multiple income streams with Anisha's proven coaching program.",
 };
 
 export default function RootLayout({

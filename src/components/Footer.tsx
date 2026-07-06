@@ -1,6 +1,3 @@
-import Image from "next/image";
-import logo from "../../public/logo.png";
-
 const NAV = [
   { label: "About Me", href: "#my-story" },
   { label: "Why Education Matters", href: "#why-education-matters" },
@@ -29,12 +26,12 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.2fr_1.6fr] md:gap-16">
           {/* Brand */}
           <div>
-            <a href="#top" className="inline-block" aria-label="Coaching with Anu — home">
-              <Image
-                src={logo}
-                alt="Coaching with Anu"
-                className="h-16 w-16 rounded-xl bg-white object-contain p-1.5 shadow-sm"
-              />
+            <a
+              href="#top"
+              className="text-2xl font-semibold tracking-tight text-white"
+              aria-label="Anisha Blueprint — home"
+            >
+              anisha <span className="text-brand-300">blueprint</span>
             </a>
             <p className="mt-3 text-xs font-medium text-white/80">
               From international student to digital entrepreneur.
@@ -72,7 +69,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-14 border-t border-white/10 pt-6 text-center text-sm text-white/70">
-          © 2026 Online Business Coaching with Anu ·{" "}
+          © 2026 Online Business Coaching with Anisha ·{" "}
           <a
             href={INSTAGRAM}
             target="_blank"

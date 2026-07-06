@@ -92,7 +92,7 @@ export default function About() {
           >
             <Image
               src={anuPhoto}
-              alt="Anu, founder of Coaching with Anu, at her workspace"
+              alt="Anisha, founder of Coaching with Anisha, at her workspace"
               placeholder="blur"
               sizes="(max-width: 1024px) 60vw, 18rem"
               className="h-auto w-full object-cover"

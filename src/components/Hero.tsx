@@ -118,7 +118,7 @@ export default function Hero() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-400" />
           </span>
-          Online Business Education by Anu
+          Online Business Education by Anisha
         </motion.span>
 
         <motion.h1

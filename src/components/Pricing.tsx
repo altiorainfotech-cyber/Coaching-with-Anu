@@ -39,7 +39,7 @@ const PLANS: Plan[] = [
     note: "From ~$45 CAD/month via Klarna or Afterpay — payments begin month 2",
     features: [
       "Full access to my complete course — all modules",
-      "Personal mentorship from Anu — for life",
+      "Personal mentorship from Anisha — for life",
       "90-minute (or more) 1-on-1 intro coaching call",
       "Custom business plan built just for you",
       "Access to private WhatsApp community",
@@ -185,7 +185,7 @@ export default function Pricing() {
           direction="up"
           className="mt-14 flex items-center justify-center gap-2 text-center text-base text-zinc-600"
         >
-          <span>💬 Questions? DM Anu on Instagram</span>
+          <span>💬 Questions? DM Anisha on Instagram</span>
           <a
             href="https://instagram.com/anishaxsidhu"
             target="_blank"
