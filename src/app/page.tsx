@@ -6,6 +6,7 @@ import TheProgram from "@/components/TheProgram";
 import IncomeStreams from "@/components/IncomeStreams";
 import ProofItWorks from "@/components/ProofItWorks";
 import FeaturedStudents from "@/components/FeaturedStudents";
+import ShowcaseCards from "@/components/ShowcaseCards";
 import CtaBanner from "@/components/CtaBanner";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <WhyEducation />
       <TheProgram />
       <ProofItWorks />
+      <ShowcaseCards />
       <IncomeStreams />
       <FeaturedStudents />
       <CtaBanner />

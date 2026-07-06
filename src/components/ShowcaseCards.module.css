@@ -1,0 +1,527 @@
+/* 3D hover card gallery — adapted from a CodePen by Yancy Min.
+   Bare element selectors are scoped under .stage/.container so nothing
+   leaks to the rest of the site. */
+
+.stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:
+    radial-gradient(ellipse at 28% 16%, rgba(37, 99, 235, 0.18), transparent 58%),
+    radial-gradient(ellipse at 80% 82%, rgba(147, 51, 234, 0.14), transparent 60%),
+    #070b1a;
+  perspective: 90rem;
+  perspective-origin: 34% 61%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Decorative animated background (distinct from the hero) */
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.42;
+  will-change: transform;
+}
+.orb1 {
+  width: 30rem;
+  height: 30rem;
+  top: -6rem;
+  left: -7rem;
+  background: #00bf9c;
+  animation: drift1 19s ease-in-out infinite;
+}
+.orb2 {
+  width: 26rem;
+  height: 26rem;
+  top: 20%;
+  right: -6rem;
+  background: #653ee6;
+  animation: drift2 24s ease-in-out infinite;
+}
+.orb3 {
+  width: 28rem;
+  height: 28rem;
+  bottom: -8rem;
+  left: 18%;
+  background: #008bff;
+  animation: drift3 22s ease-in-out infinite;
+}
+.orb4 {
+  width: 22rem;
+  height: 22rem;
+  bottom: 6%;
+  right: 16%;
+  background: #ff6500;
+  opacity: 0.32;
+  animation: drift4 26s ease-in-out infinite;
+}
+
+@keyframes drift1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(70px, 46px) scale(1.15);
+  }
+}
+@keyframes drift2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-64px, 40px) scale(1.2);
+  }
+}
+@keyframes drift3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(50px, -50px) scale(1.18);
+  }
+}
+@keyframes drift4 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-40px, -30px) scale(1.25);
+  }
+}
+
+/* Slow rotating conic sheen */
+.sheen {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 72rem;
+  height: 72rem;
+  margin-left: -36rem;
+  margin-top: -36rem;
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(59, 130, 246, 0.1),
+    transparent 38%,
+    transparent 60%,
+    rgba(168, 85, 247, 0.1),
+    transparent 92%
+  );
+  filter: blur(40px);
+  animation: spin 60s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Sweeping light beams */
+.beam {
+  position: absolute;
+  top: -50%;
+  left: 0;
+  height: 200%;
+  filter: blur(28px);
+}
+.beam1 {
+  width: 8rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(96, 165, 250, 0.5),
+    transparent
+  );
+  animation: sweep1 8s ease-in-out infinite;
+}
+.beam2 {
+  width: 5rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(236, 72, 153, 0.4),
+    transparent
+  );
+  animation: sweep2 11s ease-in-out infinite;
+}
+@keyframes sweep1 {
+  0% {
+    transform: translateX(-40%) rotate(12deg);
+  }
+  100% {
+    transform: translateX(160%) rotate(12deg);
+  }
+}
+@keyframes sweep2 {
+  0% {
+    transform: translateX(170%) rotate(-12deg);
+  }
+  100% {
+    transform: translateX(-40%) rotate(-12deg);
+  }
+}
+
+/* Floating particles */
+.particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: rgba(191, 219, 254, 0.7);
+  filter: blur(1px);
+  box-shadow: 0 0 12px rgba(96, 165, 250, 0.8);
+}
+.p1 {
+  left: 12%;
+  bottom: 14%;
+  animation: floaty 13s ease-in-out infinite;
+}
+.p2 {
+  left: 34%;
+  top: 18%;
+  animation: floaty 17s ease-in-out infinite 1s;
+}
+.p3 {
+  left: 58%;
+  bottom: 22%;
+  animation: floaty 15s ease-in-out infinite 0.5s;
+}
+.p4 {
+  right: 20%;
+  top: 26%;
+  animation: floaty 19s ease-in-out infinite 2s;
+}
+.p5 {
+  right: 8%;
+  bottom: 30%;
+  animation: floaty 14s ease-in-out infinite 1.5s;
+}
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-46px);
+    opacity: 0.85;
+  }
+}
+
+/* Dotted texture + vignette */
+.dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.07) 1px,
+    transparent 1px
+  );
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse at center, black, transparent 78%);
+  mask-image: radial-gradient(ellipse at center, black, transparent 78%);
+}
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 52%,
+    rgba(3, 6, 16, 0.55)
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb1,
+  .orb2,
+  .orb3,
+  .orb4,
+  .sheen,
+  .beam1,
+  .beam2,
+  .particle {
+    animation: none;
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 80vw;
+  height: 100vh;
+  margin-left: 6vw;
+  transform: rotateX(23deg) rotateZ(-9deg) rotateY(15deg) scale3d(1, 1, -0.9);
+}
+
+.container img {
+  width: 216px;
+}
+
+.box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-decoration: none;
+  transition: all 0.3s ease-out;
+  will-change: transform;
+}
+
+.box:hover .cover {
+  transform: translateY(-14px) scale(1.04);
+}
+
+.cover {
+  position: relative;
+  transition: all 400ms ease-in-out;
+  will-change: transform;
+}
+
+.cover img {
+  display: block;
+  transition: all 260ms ease-in-out;
+}
+
+/* Product name written in the center of the image */
+.name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  max-width: 92%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0a0a0a;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+.box .cover::after {
+  content: "";
+  z-index: -99;
+  position: absolute;
+  top: 24px;
+  left: -24px;
+  display: block;
+  width: 216px;
+  height: 289px;
+  opacity: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 216px 289px;
+  filter: blur(24px);
+  transition: all 260ms ease-in-out;
+  will-change: transform;
+  transform: scale(0.6);
+}
+
+.box:hover .cover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.box-1 .cover::after {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/945546/3433202-893bc9989a52eba0.png");
+}
+.box-2 .cover::after {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/945546/3433202-964edcf0f07211b0.png");
+}
+.box-3 .cover::after {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/945546/3433202-2ebb2b6f93add843.png");
+}
+.box-4 .cover::after {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/945546/3433202-f79c4cc8de2f84ae.png");
+}
+
+.container .btn {
+  display: block;
+  cursor: pointer;
+  outline: 0;
+  width: 180px;
+  height: 48px;
+  border-radius: 8px;
+  background-color: #2c3138;
+  margin-top: 40px;
+  overflow: hidden;
+  text-decoration: none;
+  transform: scale(0.7);
+}
+
+.container .btn::after {
+  content: "";
+  position: relative;
+  top: -40px;
+  display: block;
+  width: 48px;
+  height: 107%;
+  background-color: #000;
+  margin-top: -1px;
+  margin-left: -7px;
+  border-radius: 6px 0 0 6px;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A//www.w3.org/2000/svg'%20width%3D'15'%20height%3D'15'%20viewBox%3D'0%200%2016%2016'%20fill%3D'none'%3E%3Cpath%20d%3D'M3%208h9M8%204l4%204-4%204'%20stroke%3D'white'%20stroke-width%3D'1.8'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.container .btn::before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 46px;
+  margin-left: -7px;
+  margin-top: -1px;
+  transition: all 200ms cubic-bezier(0.25, 0.75, 0.5, 1.25);
+}
+
+.box-1:hover .btn::before {
+  width: 120%;
+  opacity: 0.8;
+  background-color: #00bf9c;
+}
+.box-2:hover .btn::before {
+  width: 120%;
+  opacity: 0.8;
+  background-color: #653ee6;
+}
+.box-3:hover .btn::before {
+  width: 120%;
+  opacity: 0.8;
+  background-color: #008bff;
+}
+.box-4:hover .btn::before {
+  width: 120%;
+  opacity: 0.8;
+  background-color: #ff6500;
+}
+
+.box-1 .btn {
+  border: 1px solid #00bf9c;
+  color: #fff;
+  font-size: 20px;
+  text-align: right;
+  padding-right: 18px;
+  line-height: 40px;
+}
+.box-1 .btn::after {
+  content: "";
+  background-color: #00bf9c;
+  top: -85px;
+}
+
+.box-2 .btn {
+  border: 1px solid #653ee6;
+  color: #fff;
+  font-size: 20px;
+  text-align: right;
+  padding-right: 18px;
+  line-height: 40px;
+}
+.box-2 .btn::after {
+  content: "";
+  background-color: #653ee6;
+  top: -85px;
+}
+
+.box-3 .btn {
+  border: 1px solid #008bff;
+  color: #fff;
+  font-size: 20px;
+  text-align: right;
+  padding-right: 18px;
+  line-height: 40px;
+}
+.box-3 .btn::after {
+  content: "";
+  background-color: #008bff;
+  top: -85px;
+}
+
+.box-4 .btn {
+  border: 1px solid #ff6500;
+  color: #fff;
+  font-size: 20px;
+  text-align: right;
+  padding-right: 18px;
+  line-height: 40px;
+}
+.box-4 .btn::after {
+  content: "";
+  background-color: #ff6500;
+  top: -85px;
+}
+
+.box-1 .btn div::before {
+  content: "Get Started";
+  position: relative;
+  top: -44px;
+  left: -4px;
+  color: #00bf9c;
+  font-size: 19px;
+  font-weight: 300;
+}
+.box-1:hover .btn div::before {
+  color: #fff;
+}
+
+.box-2 .btn div::before {
+  content: "Get Started";
+  position: relative;
+  top: -44px;
+  left: -4px;
+  color: rgb(154, 123, 255);
+  font-size: 19px;
+  font-weight: 300;
+}
+.box-2:hover .btn div::before {
+  color: #fff;
+}
+
+.box-3 .btn div::before {
+  content: "Get Started";
+  position: relative;
+  top: -44px;
+  left: -4px;
+  color: #008bff;
+  font-size: 19px;
+  font-weight: 300;
+}
+.box-3:hover .btn div::before {
+  color: #fff;
+}
+
+.box-4 .btn div::before {
+  content: "Get Started";
+  position: relative;
+  top: -44px;
+  left: -4px;
+  color: #ff6500;
+  font-size: 19px;
+  font-weight: 300;
+}
+.box-4:hover .btn div::before {
+  color: #fff;
+}
