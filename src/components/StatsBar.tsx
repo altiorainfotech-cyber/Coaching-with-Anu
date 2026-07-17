@@ -19,7 +19,7 @@ type Stat = {
 
 const STATS: Stat[] = [
   { prefix: "$", to: 200, suffix: "K+", label: "Made online" },
-  { to: 300, suffix: "+", label: "Students coached" },
+  { to: 20, suffix: "+", label: "Students coached" },
   { to: 4, label: "Income streams built" },
   { display: "1:1", label: "Personal mentorship" },
 ];
