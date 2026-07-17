@@ -151,7 +151,7 @@ export default function About() {
 
           <motion.h2
             variants={item}
-            className="mt-4 font-serif text-4xl leading-tight text-black sm:text-5xl"
+            className="mt-4 font-serif text-4xl capitalize leading-tight text-black sm:text-5xl"
           >
             Hi, I&rsquo;m <em className="text-brand-600">Anisha</em> 👋
           </motion.h2>
