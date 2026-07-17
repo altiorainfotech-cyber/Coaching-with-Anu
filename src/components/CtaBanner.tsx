@@ -31,7 +31,7 @@ export default function CtaBanner() {
           />
 
           <Reveal direction="up" className="relative">
-            <h2 className="mx-auto max-w-3xl font-serif text-4xl leading-[1.15] sm:text-5xl">
+            <h2 className="mx-auto max-w-3xl font-serif text-4xl capitalize leading-[1.15] sm:text-5xl">
               You don&apos;t need a big following.
               <br />
               You just need the{" "}

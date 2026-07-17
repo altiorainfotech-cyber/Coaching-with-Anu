@@ -121,7 +121,7 @@ export default function WhyEducation() {
           <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-600 shadow-sm">
             Why Education Matters
           </span>
-          <h2 className="mt-6 font-serif text-4xl leading-[1.1] text-white sm:text-6xl">
+          <h2 className="mt-6 font-serif text-4xl capitalize leading-[1.1] text-white sm:text-6xl">
             Feeling Overwhelmed by All the{" "}
             <em className="bg-linear-to-r from-brand-300 to-brand-100 bg-clip-text text-transparent">
               Information Online?
