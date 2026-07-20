@@ -212,7 +212,7 @@ export default function WhyEducation() {
                   here&apos;s how the journey unfolded, one decision at a time.
                 </p>
                 <a
-                  href="#the-program"
+                  href="#what-i-help"
                   className="group mt-7 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50/70 px-5 py-2.5 text-sm font-semibold text-brand-700 shadow-sm transition-all duration-300 hover:gap-3 hover:border-brand-300 hover:bg-brand-100/70 hover:shadow-md"
                 >
                   Start your own journey

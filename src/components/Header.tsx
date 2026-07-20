@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 const NAV_ITEMS = [
   { label: "My Story", href: "#my-story" },
   { label: "Why Education Matters", href: "#why-education-matters" },
-  { label: "The Program", href: "#the-program" },
+  { label: "What I Help You With", href: "#what-i-help" },
   { label: "Multiple Income Streams", href: "#multiple-income-streams" },
   { label: "Proof It Works", href: "#proof-it-works" },
   { label: "Student Results", href: "#student-spotlights" },
@@ -97,7 +97,7 @@ export default function Header() {
           {/* Right — CTA + mobile toggle */}
           <div className="flex shrink-0 items-center gap-2 justify-self-end">
             <motion.a
-              href="#showcase"
+              href="#path-slider"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               className="hidden whitespace-nowrap rounded-none rounded-tl-2xl rounded-br-2xl bg-black px-7 py-2.5 text-sm font-semibold text-white shadow-lg shadow-black/25 ring-1 ring-inset ring-white/15 transition-all hover:bg-zinc-800 hover:shadow-xl sm:inline-block"
@@ -179,7 +179,7 @@ export default function Header() {
                 ))}
               </ul>
               <a
-                href="#showcase"
+                href="#path-slider"
                 onClick={() => setMenuOpen(false)}
                 className="mt-2 block rounded-none rounded-tl-2xl rounded-br-2xl bg-black px-4 py-3 text-center text-base font-semibold text-white shadow-lg shadow-black/25"
               >

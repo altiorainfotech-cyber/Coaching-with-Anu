@@ -163,7 +163,7 @@ export default function Hero() {
           className="mt-9 flex flex-col items-center gap-3 sm:flex-row"
         >
           <motion.a
-            href="#the-program"
+            href="#what-i-help"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
             className="group inline-flex items-center gap-2 rounded-none rounded-tl-3xl rounded-br-3xl bg-black px-7 py-3.5 text-base font-semibold text-white shadow-[0_8px_30px_rgba(0,0,0,0.55)] ring-1 ring-inset ring-white/25 transition-all hover:bg-zinc-900 hover:shadow-[0_8px_45px_rgba(0,0,0,0.7)]"

@@ -1,0 +1,193 @@
+/* Swiper cube slider section — adapted from a CodePen by Ecem Gokdogan. */
+
+.section {
+  position: relative;
+  display: grid;
+  grid-template-columns: 50% 45%;
+  place-items: center;
+  gap: 60px;
+  min-height: 100vh;
+  padding: 88px 60px;
+  overflow: hidden;
+  background: #162561;
+  background-image: radial-gradient(
+      circle at 20% 100%,
+      rgba(184, 184, 184, 0.1) 0%,
+      rgba(184, 184, 184, 0.1) 33%,
+      rgba(96, 96, 96, 0.1) 33%,
+      rgba(96, 96, 96, 0.1) 66%,
+      rgba(7, 7, 7, 0.1) 66%,
+      rgba(7, 7, 7, 0.1) 99%
+    ),
+    linear-gradient(40deg, #040a22, #162561, #202e64, #6f7aa6);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* CONTENT */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+}
+
+.content h1 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.15;
+  letter-spacing: 0.5px;
+  margin-bottom: 28px;
+  color: #fff;
+}
+
+.content h1 em {
+  font-style: italic;
+  color: #93c5fd;
+}
+
+.content p {
+  font-size: clamp(0.95rem, 3vw, 1.2rem);
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.button {
+  display: inline-block;
+  background: #eaeaea;
+  color: #202134;
+  font-size: clamp(0.9rem, 4vw, 1rem);
+  font-weight: 600;
+  border: 0;
+  padding: 12px 22px;
+  border-radius: 8px;
+  transform: scale(1);
+  transition: all 0.35s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button:hover,
+.button:focus {
+  transform: scale(0.98);
+  background-color: #6f7aa6;
+  color: #fff;
+}
+
+/* SLIDER */
+.swiper {
+  position: relative;
+  z-index: 2;
+  width: 400px;
+  height: 490px;
+}
+
+.slide {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  user-select: none;
+}
+
+.slide a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: 170px;
+  padding: 20px;
+  background: linear-gradient(
+    to top,
+    rgba(4, 8, 24, 0.95) 0%,
+    rgba(4, 8, 24, 0.8) 45%,
+    rgba(4, 8, 24, 0.2) 100%
+  );
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  color: #fff;
+  border-radius: 0 0 20px 20px;
+}
+
+.overlay h2 {
+  font-size: clamp(1.15rem, 4vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #fcd34d, #e879f9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (max-width: 1050px) {
+  .swiper {
+    width: 350px;
+    height: 450px;
+  }
+}
+
+@media (max-width: 930px) {
+  .section {
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "slider"
+      "content";
+    place-items: center;
+    gap: 56px;
+    padding: 72px 40px;
+    min-height: 0;
+  }
+  .swiper {
+    grid-area: slider;
+  }
+  .content {
+    grid-area: content;
+    text-align: center;
+  }
+}
+
+@media (max-width: 470px) {
+  .section {
+    padding: 56px 28px 64px;
+  }
+  .swiper {
+    width: 300px;
+    height: 400px;
+  }
+}

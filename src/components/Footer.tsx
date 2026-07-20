@@ -1,7 +1,7 @@
 const NAV = [
   { label: "About Me", href: "#my-story" },
   { label: "Why Education Matters", href: "#why-education-matters" },
-  { label: "What I Help You With", href: "#the-program" },
+  { label: "What I Help You With", href: "#what-i-help" },
   { label: "My Promise", href: "#proof-it-works" },
   { label: "Who This Is For", href: "#multiple-income-streams" },
   { label: "The Bigger Picture", href: "#student-spotlights" },

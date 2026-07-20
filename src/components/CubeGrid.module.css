@@ -1,0 +1,141 @@
+/* Rippling 3D cube grid — ported from a CodePen SCSS demo.
+   Faces tinted to the brand palette. */
+
+.container {
+  width: 500px;
+  height: 500px;
+  position: relative;
+  perspective: 1000px;
+}
+
+.inner {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg) rotateX(40deg) rotateZ(45deg);
+}
+
+.top {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  margin: 0;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.face {
+  margin: 0;
+  width: 50px;
+  height: 50px;
+  display: block;
+  position: absolute;
+  backface-visibility: hidden;
+  contain: layout;
+}
+
+.face1 {
+  transform: rotateY(0deg) translateZ(25px);
+  background-color: #ffffff;
+  animation: cg-top 2s ease-in-out var(--delay, 0s) infinite forwards;
+}
+.face2 {
+  transform: rotateX(-90deg) translateZ(-25px);
+  background-color: #dbeafe;
+  animation: cg-f2 2s ease-in-out var(--delay, 0s) infinite forwards;
+}
+.face3 {
+  transform: rotateY(90deg) translateZ(25px);
+  background-color: #bfdbfe;
+  animation: cg-f3 2s ease-in-out var(--delay, 0s) infinite forwards;
+}
+.face4 {
+  transform: rotateY(-90deg) translateZ(25px);
+  background-color: #bfdbfe;
+  animation: cg-f4 2s ease-in-out var(--delay, 0s) infinite forwards;
+}
+.face5 {
+  transform: rotateX(-90deg) translateZ(25px);
+  background-color: #dbeafe;
+  animation: cg-f5 2s ease-in-out var(--delay, 0s) infinite forwards;
+}
+
+@keyframes cg-top {
+  0% {
+    transform: rotateY(0deg) translateZ(25px);
+  }
+  50% {
+    transform: rotateY(0deg) translateZ(0);
+  }
+  100% {
+    transform: rotateY(0deg) translateZ(25px);
+  }
+}
+@keyframes cg-f2 {
+  0% {
+    transform: rotateX(-90deg) translateZ(-25px);
+    height: 50px;
+  }
+  50% {
+    transform: rotateX(-90deg) translateZ(0px);
+    height: 0;
+  }
+  100% {
+    transform: rotateX(-90deg) translateZ(-25px);
+    height: 50px;
+  }
+}
+@keyframes cg-f3 {
+  0% {
+    transform: rotateY(90deg) translateZ(25px);
+    width: 50px;
+  }
+  50% {
+    transform: rotateY(90deg) translateZ(50px);
+    width: 0;
+  }
+  100% {
+    transform: rotateY(90deg) translateZ(25px);
+    width: 50px;
+  }
+}
+@keyframes cg-f4 {
+  0% {
+    transform: rotateY(-90deg) translateZ(25px);
+    width: 50px;
+  }
+  50% {
+    transform: rotateY(-90deg) translateZ(0px);
+    width: 0;
+  }
+  100% {
+    transform: rotateY(-90deg) translateZ(25px);
+    width: 50px;
+  }
+}
+@keyframes cg-f5 {
+  0% {
+    transform: rotateX(-90deg) translateZ(25px);
+    height: 50px;
+  }
+  50% {
+    transform: rotateX(-90deg) translateZ(50px);
+    height: 0;
+  }
+  100% {
+    transform: rotateX(-90deg) translateZ(25px);
+    height: 50px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .face1,
+  .face2,
+  .face3,
+  .face4,
+  .face5 {
+    animation: none;
+  }
+}

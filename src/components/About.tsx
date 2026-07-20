@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import anuPhoto from "../../public/image.jpeg";
 import Reveal from "./Reveal";
-import PaintDrip from "./PaintDrip";
+import CubeGrid from "./CubeGrid";
 
 const stagger = {
   hidden: {},
@@ -30,14 +30,13 @@ export default function About() {
       id="my-story"
       className="relative scroll-mt-24 overflow-hidden bg-linear-to-b from-white to-brand-50/60 py-24 sm:py-32"
     >
-      {/* Soft brand wash */}
+      {/* Animated 3D cube-grid background */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-brand-100/50 blur-3xl"
-      />
-
-      {/* Paint-dripping ink effect — animates in on scroll */}
-      <PaintDrip className="pointer-events-none absolute inset-0 h-full w-full" />
+        className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"
+      >
+        <CubeGrid className="scale-[1.5] opacity-40 sm:scale-[1.8]" />
+      </div>
 
       <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-16 px-6 lg:grid-cols-2 lg:gap-20">
         {/* ---------- Image collage ---------- */}
@@ -189,7 +188,7 @@ export default function About() {
           {/* CTA */}
           <motion.a
             variants={item}
-            href="#the-program"
+            href="#what-i-help"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
             className="group mt-10 inline-flex items-center gap-2 rounded-none rounded-tl-3xl rounded-br-3xl bg-black px-8 py-4 text-sm font-semibold uppercase tracking-wider text-white shadow-xl shadow-black/25 transition-all hover:bg-zinc-800 hover:shadow-2xl"

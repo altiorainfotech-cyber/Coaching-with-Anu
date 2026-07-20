@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import styles from "./ShowcaseCards.module.css";
+import SpiralBackground from "./SpiralBackground";
 
 type Card = {
   box: string;
@@ -108,23 +109,8 @@ export default function ShowcaseCards() {
 
   return (
     <section id="showcase" className={styles.stage}>
-      {/* Distinct animated backdrop */}
-      <div className={styles.bg} aria-hidden>
-        <div className={styles.sheen} />
-        <span className={`${styles.orb} ${styles.orb1}`} />
-        <span className={`${styles.orb} ${styles.orb2}`} />
-        <span className={`${styles.orb} ${styles.orb3}`} />
-        <span className={`${styles.orb} ${styles.orb4}`} />
-        <span className={`${styles.beam} ${styles.beam1}`} />
-        <span className={`${styles.beam} ${styles.beam2}`} />
-        <span className={`${styles.particle} ${styles.p1}`} />
-        <span className={`${styles.particle} ${styles.p2}`} />
-        <span className={`${styles.particle} ${styles.p3}`} />
-        <span className={`${styles.particle} ${styles.p4}`} />
-        <span className={`${styles.particle} ${styles.p5}`} />
-        <div className={styles.dots} />
-        <div className={styles.vignette} />
-      </div>
+      {/* Generative 3D spiral backdrop */}
+      <SpiralBackground />
 
       {/* Heading */}
       <div className="relative z-10 px-6 pb-12 text-center">
