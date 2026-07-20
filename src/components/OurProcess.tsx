@@ -81,7 +81,7 @@ export default function OurProcess() {
   return (
     <section
       id="what-i-help"
-      className="relative scroll-mt-24 overflow-hidden bg-linear-to-b from-white to-brand-50/60 px-4 py-16 text-black sm:px-6 sm:py-24"
+      className="relative scroll-mt-24 overflow-hidden bg-white px-4 py-16 text-black sm:px-6 sm:py-24"
     >
       <div className="mx-auto w-full max-w-7xl">
         <div className="mx-auto mb-8 max-w-2xl text-center sm:mb-12">

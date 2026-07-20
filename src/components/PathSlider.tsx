@@ -66,6 +66,9 @@ export default function PathSlider() {
     () => ({
       fpsLimit: 60,
       fullScreen: { enable: false },
+      // Don't burn frames while this section is off-screen / tab is inactive.
+      pauseOnOutsideViewport: true,
+      pauseOnBlur: true,
       background: { color: { value: "#040a22" }, opacity: 0 },
       particles: {
         number: { value: 30, density: { enable: true } },

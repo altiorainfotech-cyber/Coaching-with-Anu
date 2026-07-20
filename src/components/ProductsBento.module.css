@@ -1,0 +1,146 @@
+/* Floating "lights" background on the hero's dark palette. */
+.section {
+  background: radial-gradient(circle at 50% 35%, #12224d, #060a18 72%);
+}
+
+.lights {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Soft vertical light beams drifting upward. No hard caps — the gradient
+   fades to nothing at both ends and a blur keeps the edges gentle. */
+.light {
+  position: absolute;
+  top: 100%;
+  width: 10px;
+  height: 80vh;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(191, 219, 254, 0.28) 22%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(191, 219, 254, 0.28) 78%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  filter: blur(7px);
+  opacity: 0;
+  will-change: transform, opacity;
+  /* transform-based so it animates on the GPU (the original animated `top`) */
+  animation-name: floatUp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scaleX(var(--s, 1));
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 1;
+  }
+  82% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translateY(-200vh) scaleX(var(--s, 1));
+    opacity: 0;
+  }
+}
+
+/* Slower drift + negative delays so the beams are always spread out
+   instead of all rising in sync. */
+.x1 {
+  --s: 1;
+  left: 6%;
+  animation-duration: 12s;
+  animation-delay: -2s;
+}
+.x2 {
+  --s: 1.8;
+  left: 17%;
+  animation-duration: 16s;
+  animation-delay: -7s;
+}
+.x3 {
+  --s: 0.7;
+  left: 27%;
+  animation-duration: 10s;
+  animation-delay: -4s;
+}
+.x4 {
+  --s: 1.3;
+  left: 37%;
+  animation-duration: 14s;
+  animation-delay: -9s;
+}
+.x5 {
+  --s: 2.4;
+  left: 48%;
+  animation-duration: 18s;
+  animation-delay: -1s;
+}
+.x6 {
+  --s: 0.9;
+  left: 59%;
+  animation-duration: 11s;
+  animation-delay: -6s;
+}
+.x7 {
+  --s: 3;
+  left: 70%;
+  animation-duration: 20s;
+  animation-delay: -13s;
+}
+.x8 {
+  --s: 1.6;
+  left: 81%;
+  animation-duration: 13s;
+  animation-delay: -3s;
+}
+.x9 {
+  --s: 1.1;
+  left: 92%;
+  animation-duration: 15s;
+  animation-delay: -8s;
+}
+
+/* Each tile pops to 1.09 in turn, looping as a wave across the row. */
+/* 9s cycle with a ~1.1s pulse; tiles are staggered 1.15s apart in the
+   component, so each finishes before the next begins — one at a time. */
+.pulse {
+  animation: tilePulse 9s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  will-change: transform;
+}
+
+@keyframes tilePulse {
+  0% {
+    transform: scale(1);
+  }
+  6% {
+    transform: scale(1.09);
+  }
+  12% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .light {
+    animation: none;
+    opacity: 0;
+  }
+  .pulse {
+    animation: none;
+  }
+}

@@ -44,10 +44,10 @@ export default function ProofItWorks() {
           delay={0.1}
           className="mx-auto mt-10 max-w-2xl space-y-5 text-center"
         >
-          <p className="text-lg text-zinc-300">
+          <p className="text-xl text-white">
             I won&apos;t promise overnight success.
           </p>
-          <p className="text-lg text-zinc-300">
+          <p className="text-xl text-white">
             I won&apos;t tell you it&apos;s easy.
           </p>
           <p className="text-xl font-medium leading-9 text-white sm:text-2xl">
@@ -58,7 +58,7 @@ export default function ProofItWorks() {
             show you the same strategies, systems, and mindset that helped me go
             from searching for opportunities to creating them.
           </p>
-          <p className="text-lg leading-8 text-zinc-300">
+          <p className="text-xl leading-8 text-white">
             Because I truly believe that learning digital skills is one of the
             best investments you can make.
           </p>

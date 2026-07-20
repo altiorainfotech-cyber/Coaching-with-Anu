@@ -87,13 +87,8 @@ export default function StudentResults() {
   return (
     <section
       id="student-results"
-      className="relative scroll-mt-24 overflow-hidden bg-linear-to-b from-white to-brand-50/60 py-24 sm:py-32"
+      className="relative scroll-mt-24 overflow-hidden bg-white py-24 sm:py-32"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-24 top-1/4 h-96 w-96 rounded-full bg-brand-100/60 blur-3xl"
-      />
-
       <div className="relative mx-auto max-w-6xl px-6">
         {/* Header */}
         <Reveal direction="up" className="mx-auto max-w-2xl text-center">

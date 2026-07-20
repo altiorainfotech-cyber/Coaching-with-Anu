@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { motion, type Variants } from "motion/react";
 import GLSLHills from "./ui/glsl-hills";
 
@@ -43,6 +43,76 @@ const LINE_TWO: { t: string; h?: boolean }[] = [
 
 export default function HeroModern() {
   const [videoControls, setVideoControls] = useState(false);
+  const [showUnmute, setShowUnmute] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Turn sound on from a real click (always allowed by the browser).
+  const enableSound = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = false;
+    v.volume = 1;
+    v.play().catch(() => {});
+    setShowUnmute(false);
+  };
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+
+    // Start 2s after load, with sound. Browsers block unmuted autoplay until
+    // the user has interacted, so fall back to muted and unmute on the first
+    // interaction.
+    const start = async () => {
+      v.muted = false;
+      v.volume = 1;
+      try {
+        await v.play();
+        setShowUnmute(false);
+        return;
+      } catch {
+        /* blocked — fall back below */
+      }
+
+      v.muted = true;
+      try {
+        await v.play();
+        setShowUnmute(true);
+      } catch {
+        /* ignore */
+      }
+
+      const unmute = () => {
+        v.muted = false;
+        v.play().catch(() => {});
+        setShowUnmute(false);
+        window.removeEventListener("pointerdown", unmute);
+        window.removeEventListener("keydown", unmute);
+        window.removeEventListener("touchstart", unmute);
+      };
+      window.addEventListener("pointerdown", unmute, { once: true });
+      window.addEventListener("keydown", unmute, { once: true });
+      window.addEventListener("touchstart", unmute, { once: true });
+    };
+
+    const timer = window.setTimeout(start, 2000);
+
+    // Stop the video once the hero scrolls out of view. It deliberately does
+    // NOT auto-resume on scroll back — the visitor restarts it if they want.
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) v.pause();
+      },
+      { threshold: 0.25 },
+    );
+    io.observe(v);
+
+    return () => {
+      window.clearTimeout(timer);
+      io.disconnect();
+      v.pause();
+    };
+  }, []);
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#060a18] px-6 pt-32 pb-20 text-white">
@@ -183,11 +253,11 @@ export default function HeroModern() {
           <div className="relative rounded-[2rem] bg-linear-to-br from-white/20 to-white/5 p-[1.5px] shadow-2xl shadow-brand-900/40 backdrop-blur-sm">
             <div className="overflow-hidden rounded-[1.9rem] ring-1 ring-white/10">
               <video
-                src="/images/hero-video.mp4"
-                autoPlay
+                ref={videoRef}
+                src="https://pub-00cafda969bc42d5aac5365b6609f526.r2.dev/Altiora-wallet/hero-video.mp4"
                 loop
-                muted
                 playsInline
+                preload="auto"
                 controls={videoControls}
                 onMouseEnter={() => setVideoControls(true)}
                 onMouseLeave={() => setVideoControls(false)}
@@ -195,6 +265,29 @@ export default function HeroModern() {
                 aria-label="Anisha marketing video"
                 className="h-[80vh] w-full object-cover"
               />
+              {/* Tap-for-sound (browsers block audio until the first click) */}
+              {showUnmute && (
+                <button
+                  type="button"
+                  onClick={enableSound}
+                  className="absolute bottom-5 left-5 z-20 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/60 px-4 py-2 text-sm font-semibold text-white shadow-lg backdrop-blur-md transition-colors hover:bg-black/80"
+                >
+                  <svg
+                    className="h-4 w-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M11 5 6 9H2v6h4l5 4V5Z" />
+                    <path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14" />
+                  </svg>
+                  Tap for sound
+                </button>
+              )}
+
               {/* photo bottom gradient */}
               <div
                 aria-hidden
@@ -203,27 +296,6 @@ export default function HeroModern() {
             </div>
           </div>
 
-          {/* Floating glass card — income streams */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: [0, 14, 0] }}
-            transition={{
-              opacity: { duration: 0.7, delay: 0.9 },
-              y: { duration: 7, repeat: Infinity, ease: "easeInOut" },
-            }}
-            className="absolute -right-4 bottom-12 flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 shadow-2xl shadow-brand-900/40 backdrop-blur-md sm:-right-8"
-          >
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-brand-400 to-brand-600 text-white shadow-lg">
-              <svg className="h-5 w-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M10 2.5l6.5 3.5v8L10 17.5 3.5 14v-8L10 2.5Z" />
-                <path d="M3.7 6L10 9.5 16.3 6M10 9.5v8" />
-              </svg>
-            </span>
-            <div>
-              <p className="text-xl font-bold text-white">4</p>
-              <p className="text-xs text-zinc-300">Income streams</p>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
 

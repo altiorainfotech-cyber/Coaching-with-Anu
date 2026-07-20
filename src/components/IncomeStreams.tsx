@@ -84,26 +84,8 @@ export default function IncomeStreams() {
   return (
     <section
       id="multiple-income-streams"
-      className="relative scroll-mt-24 overflow-hidden bg-linear-to-b from-white to-brand-50/60 py-28 text-black sm:py-36"
+      className="relative scroll-mt-24 overflow-hidden bg-white py-28 text-black sm:py-36"
     >
-      {/* Animated background blobs */}
-      <motion.div
-        aria-hidden
-        animate={{ x: [0, 50, 0], y: [0, -40, 0], scale: [1, 1.12, 1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -left-24 top-0 h-[30rem] w-[30rem] rounded-full bg-brand-100/60 blur-3xl"
-      />
-      <motion.div
-        aria-hidden
-        animate={{ x: [0, -40, 0], y: [0, 40, 0], scale: [1, 1.18, 1] }}
-        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -right-20 bottom-0 h-[26rem] w-[26rem] rounded-full bg-brand-100/50 blur-3xl"
-      />
-      {/* Subtle dot grid */}
-      <div
-        aria-hidden
-        className="absolute inset-0 [background-image:radial-gradient(rgba(37,99,235,0.08)_1px,transparent_1px)] [background-size:28px_28px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]"
-      />
 
       <div className="relative mx-auto max-w-6xl px-6">
         {/* Header — centered on top */}
@@ -147,7 +129,7 @@ export default function IncomeStreams() {
 
               <div className="relative z-10">
                 {/* Icon */}
-                <span className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-red-500 via-brand-500 to-yellow-400 text-white shadow-lg shadow-brand-900/20 ring-1 ring-inset ring-white/25">
+                <span className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-brand-400 to-brand-600 text-white shadow-lg shadow-brand-900/20 ring-1 ring-inset ring-white/25">
                   <svg
                     className="h-7 w-7"
                     viewBox="0 0 20 20"
