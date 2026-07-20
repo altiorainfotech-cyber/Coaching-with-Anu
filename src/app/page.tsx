@@ -2,12 +2,12 @@ import HeroModern from "@/components/HeroModern";
 import StatsBar from "@/components/StatsBar";
 import About from "@/components/About";
 import WhyEducation from "@/components/WhyEducation";
-import TheProgram from "@/components/TheProgram";
+import OurProcess from "@/components/OurProcess";
 import IncomeStreams from "@/components/IncomeStreams";
 import ProofItWorks from "@/components/ProofItWorks";
 import FeaturedStudents from "@/components/FeaturedStudents";
 import MultipleIncomeStreams from "@/components/MultipleIncomeStreams";
-import ShowcaseCards from "@/components/ShowcaseCards";
+import PathSlider from "@/components/PathSlider";
 import ProofResults from "@/components/ProofResults";
 import StudentResults from "@/components/StudentResults";
 import CtaBanner from "@/components/CtaBanner";
@@ -19,10 +19,10 @@ export default function Home() {
       <StatsBar />
       <About />
       <WhyEducation />
-      <TheProgram />
+      <OurProcess />
       <ProofItWorks />
       <MultipleIncomeStreams />
-      <ShowcaseCards />
+      <PathSlider />
       <IncomeStreams />
       <ProofResults />
       <StudentResults />

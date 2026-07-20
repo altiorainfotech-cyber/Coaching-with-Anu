@@ -47,8 +47,13 @@ export default function VantaBirds({ className }: { className?: string }) {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    const el = ref.current;
+    if (!el) return;
+
     let effect: VantaEffect | null = null;
     let cancelled = false;
+    let fadeTimer = 0;
+    let stopTimer = 0;
 
     (async () => {
       try {
@@ -60,6 +65,12 @@ export default function VantaBirds({ className }: { className?: string }) {
       }
       const w = window as unknown as VantaGlobal;
       if (cancelled || !ref.current || !w.VANTA?.BIRDS) return;
+
+      // Only ever one flock: clear any leftover canvas from a prior
+      // init / hot-reload before creating a new one.
+      ref.current.querySelectorAll("canvas").forEach((c) => c.remove());
+      ref.current.style.opacity = ""; // reset in case a prior run faded it out
+      ref.current.style.transition = "opacity 4s ease-in-out";
 
       effect = w.VANTA.BIRDS({
         el: ref.current,
@@ -77,7 +88,7 @@ export default function VantaBirds({ className }: { className?: string }) {
         color1: 0xff0000,
         color2: 0x00d1ff,
         colorMode: "varianceGradient",
-        quantity: 5.0,
+        quantity: 4,
         birdSize: 1.0,
         wingSpan: 30.0,
         speedLimit: 5.0,
@@ -85,11 +96,25 @@ export default function VantaBirds({ className }: { className?: string }) {
         alignment: 20.0,
         cohesion: 20.0,
       });
+
+      // Fly for ~9s, smoothly fade the flock out over the last 4s, then
+      // freeze the loop at 13s.
+      fadeTimer = window.setTimeout(() => {
+        if (ref.current) ref.current.style.opacity = "0";
+      }, 9000);
+      stopTimer = window.setTimeout(() => {
+        const e = effect as unknown as { req?: number } | null;
+        if (e && typeof e.req === "number") cancelAnimationFrame(e.req);
+      }, 13000);
     })();
 
     return () => {
       cancelled = true;
+      window.clearTimeout(fadeTimer);
+      window.clearTimeout(stopTimer);
       effect?.destroy();
+      // Remove any residual canvas so flocks never stack up.
+      el.querySelectorAll("canvas").forEach((c) => c.remove());
     };
   }, []);
 

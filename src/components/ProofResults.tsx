@@ -3,8 +3,7 @@
 import Image, { type StaticImageData } from "next/image";
 import { motion } from "motion/react";
 import Reveal from "./Reveal";
-import shot1 from "../../public/screenshort01.jpg";
-import shot2 from "../../public/screenshort02jpg.jpg";
+import shot1 from "../../public/images/WhatsApp Image 2026-07-19 at 12.32.39 AM.jpeg";
 
 type Proof = {
   src: StaticImageData;
@@ -15,13 +14,8 @@ type Proof = {
 const PROOFS: Proof[] = [
   {
     src: shot1,
-    alt: "Income dashboard screenshot showing real earnings",
-    tab: "earnings · dashboard",
-  },
-  {
-    src: shot2,
-    alt: "Payouts dashboard screenshot showing real income",
-    tab: "payouts · dashboard",
+    alt: "Analytics dashboard screenshot showing real revenue",
+    tab: "analytics · dashboard",
   },
 ];
 
@@ -79,7 +73,7 @@ export default function ProofResults() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="mt-16 grid items-stretch gap-8 sm:grid-cols-2"
+          className="mx-auto mt-16 grid max-w-sm items-stretch gap-8"
         >
           {PROOFS.map((proof) => (
             <motion.figure
@@ -121,14 +115,13 @@ export default function ProofResults() {
                   </div>
 
                   {/* Screenshot */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-zinc-900">
+                  <div className="relative w-full overflow-hidden bg-white">
                     <Image
                       src={proof.src}
                       alt={proof.alt}
                       placeholder="blur"
-                      fill
-                      sizes="(max-width: 640px) 90vw, 30rem"
-                      className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+                      sizes="(max-width: 640px) 90vw, 24rem"
+                      className="h-[400px] w-full object-contain transition-transform duration-700 group-hover:scale-[1.03]"
                     />
                   </div>
 

@@ -18,8 +18,7 @@ type Stat = {
 };
 
 const STATS: Stat[] = [
-  { prefix: "$", to: 200, suffix: "K+", label: "Made online" },
-  { to: 20, suffix: "+", label: "Students coached" },
+  { to: 5, suffix: "", label: "Years of experience" },
   { to: 4, label: "Income streams built" },
   { display: "1:1", label: "Personal mentorship" },
 ];
@@ -80,7 +79,7 @@ export default function StatsBar() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.4 }}
-        className="mx-auto grid max-w-6xl grid-cols-2 gap-y-10 px-6 md:grid-cols-4"
+        className="mx-auto grid max-w-4xl grid-cols-3 gap-y-10 px-6"
       >
         {STATS.map((stat, i) => (
           <motion.li

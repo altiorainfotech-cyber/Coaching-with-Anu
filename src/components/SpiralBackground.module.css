@@ -1,0 +1,126 @@
+/* Generative 3D spiral background — ported from a CodePen SCSS demo.
+   Colors: #abedd8 / #46cdcf / #3d84a8 / #112d4e. */
+
+.perspective {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #112d4e;
+  perspective: 440vmin;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  animation: sp-reveal 2.5s ease-in-out forwards;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  animation: sp-anim-v 20s ease-in-out infinite alternate;
+}
+
+.list {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  transform-style: preserve-3d;
+  animation: sp-anim-r 20s linear infinite;
+}
+
+.item {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--size);
+  width: var(--size);
+  transform-style: preserve-3d;
+  box-shadow: 0 0 2.75vmin 0.6875vmin rgba(61, 132, 168, 0.25) inset;
+  animation: sp-anim-h 2.5s var(--delay, 0s) ease-in-out infinite alternate;
+}
+
+.item::before,
+.item::after {
+  content: "";
+  position: absolute;
+}
+
+.item::after {
+  height: var(--size-a);
+  width: var(--size-a);
+  border-radius: 50%;
+  box-shadow: 0 0 1.375vmin 0.34375vmin rgba(70, 205, 207, 0.25) inset;
+  animation: sp-anim-s 2.5s ease-in-out infinite alternate;
+}
+
+.item::before {
+  height: var(--size-b);
+  width: var(--size-b);
+  box-shadow: 0 0 0.6875vmin 0.171875vmin rgba(171, 237, 216, 0.75) inset;
+  animation: sp-anim-spin 2.5s var(--delay, 0s) linear infinite;
+}
+
+@keyframes sp-anim-v {
+  0% {
+    transform: translate3d(0, 10vh, 0);
+  }
+  100% {
+    transform: translate3d(0, -10vh, 0) rotate3d(0, 0, 1, 90deg);
+  }
+}
+
+@keyframes sp-anim-h {
+  100% {
+    transform: translate3d(0, 0, var(--dist, 0));
+  }
+}
+
+@keyframes sp-anim-spin {
+  100% {
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+
+@keyframes sp-anim-s {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  100% {
+    transform: scale3d(1.5, 1.5, 1.5);
+  }
+}
+
+@keyframes sp-anim-r {
+  0% {
+    transform: rotate3d(1, 1, 0, 75deg) rotate3d(0, 0, -1, 0deg);
+  }
+  100% {
+    transform: rotate3d(1, 1, 0, 75deg) rotate3d(0, 0, -1, 360deg);
+  }
+}
+
+@keyframes sp-reveal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section,
+  .list,
+  .item,
+  .item::before,
+  .item::after {
+    animation: none;
+  }
+}

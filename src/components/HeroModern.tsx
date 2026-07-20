@@ -1,204 +1,8 @@
 "use client";
 
-import { Fragment, useEffect, useRef } from "react";
-import Image from "next/image";
+import { Fragment, useState } from "react";
 import { motion, type Variants } from "motion/react";
-import anuPhoto from "../../public/heroimage.jpeg";
-
-/** Live canvas constellation — moving nodes connected by lines + cursor pull. */
-function ParticleField() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    let w = 0;
-    let h = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    type P = { x: number; y: number; vx: number; vy: number; r: number };
-    let nodes: P[] = [];
-    const mouse = { x: -9999, y: -9999 };
-    let raf = 0;
-
-    const resize = () => {
-      const parent = canvas.parentElement;
-      if (!parent) return;
-      const rect = parent.getBoundingClientRect();
-      w = rect.width;
-      h = rect.height;
-      canvas.width = Math.floor(w * dpr);
-      canvas.height = Math.floor(h * dpr);
-      canvas.style.width = `${w}px`;
-      canvas.style.height = `${h}px`;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.min(110, Math.max(40, Math.floor((w * h) / 13000)));
-      nodes = Array.from({ length: count }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.45,
-        vy: (Math.random() - 0.5) * 0.45,
-        r: Math.random() * 1.6 + 0.8,
-      }));
-    };
-
-    const LINK = 140;
-    const draw = () => {
-      ctx.clearRect(0, 0, w, h);
-
-      for (const p of nodes) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > w) p.vx *= -1;
-        if (p.y < 0 || p.y > h) p.vy *= -1;
-
-        // gentle cursor attraction
-        const dxm = mouse.x - p.x;
-        const dym = mouse.y - p.y;
-        const dm = Math.hypot(dxm, dym);
-        if (dm < 160) {
-          p.x += (dxm / dm) * 0.5;
-          p.y += (dym / dm) * 0.5;
-        }
-      }
-
-      // links
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const a = nodes[i];
-          const b = nodes[j];
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < LINK) {
-            const o = (1 - dist / LINK) * 0.55;
-            ctx.strokeStyle = `rgba(96,165,250,${o})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // nodes
-      for (const p of nodes) {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(191,219,254,0.95)";
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = "rgba(96,165,250,0.9)";
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      }
-
-      raf = requestAnimationFrame(draw);
-    };
-
-    const onMove = (e: PointerEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    };
-    const onLeave = () => {
-      mouse.x = -9999;
-      mouse.y = -9999;
-    };
-
-    resize();
-    if (!reduce) draw();
-    else {
-      // single static frame for reduced-motion users
-      raf = requestAnimationFrame(() => {
-        draw();
-        cancelAnimationFrame(raf);
-      });
-    }
-
-    window.addEventListener("resize", resize);
-    window.addEventListener("pointermove", onMove);
-    window.addEventListener("pointerleave", onLeave);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
-      window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerleave", onLeave);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 h-full w-full"
-      aria-hidden
-    />
-  );
-}
-
-function HeroBackground() {
-  return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0 overflow-hidden"
-    >
-      {/* Color orbs */}
-      <motion.div
-        animate={{ x: [0, 90, 0], y: [0, -50, 0], scale: [1, 1.2, 1] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -left-24 -top-28 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.55),transparent_70%)] blur-3xl"
-      />
-      <motion.div
-        animate={{ x: [0, -90, 0], y: [0, 60, 0], scale: [1, 1.25, 1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -right-24 top-6 h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,rgba(147,51,234,0.45),transparent_70%)] blur-3xl"
-      />
-      <motion.div
-        animate={{ x: [0, 60, 0], y: [0, 50, 0], scale: [1, 1.18, 1] }}
-        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -bottom-28 left-1/3 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(6,182,212,0.4),transparent_70%)] blur-3xl"
-      />
-
-      {/* Live constellation */}
-      <ParticleField />
-
-      {/* Sweeping light beams */}
-      <motion.div
-        animate={{ x: ["-40%", "140%"] }}
-        transition={{
-          duration: 7,
-          repeat: Infinity,
-          ease: "easeInOut",
-          repeatDelay: 1.5,
-        }}
-        className="absolute -top-1/2 left-0 h-[200%] w-40 rotate-12 bg-linear-to-r from-transparent via-brand-300/25 to-transparent blur-xl"
-      />
-      <motion.div
-        animate={{ x: ["140%", "-40%"] }}
-        transition={{
-          duration: 9,
-          repeat: Infinity,
-          ease: "easeInOut",
-          repeatDelay: 2.5,
-        }}
-        className="absolute -top-1/2 left-0 h-[200%] w-24 -rotate-12 bg-linear-to-r from-transparent via-fuchsia-300/20 to-transparent blur-xl"
-      />
-
-      {/* Rotating conic sheen */}
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 55, repeat: Infinity, ease: "linear" }}
-        className="absolute left-1/2 top-1/2 h-[64rem] w-[64rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[conic-gradient(from_0deg,transparent,rgba(59,130,246,0.16),transparent_38%,transparent_60%,rgba(168,85,247,0.14),transparent_92%)] blur-2xl"
-      />
-    </div>
-  );
-}
+import GLSLHills from "./ui/glsl-hills";
 
 const container: Variants = {
   hidden: {},
@@ -236,23 +40,16 @@ const LINE_TWO: { t: string; h?: boolean }[] = [
   { t: "Income.", h: true },
 ];
 
-const AVATARS = [12, 32, 45, 60, 5];
 
 export default function HeroModern() {
+  const [videoControls, setVideoControls] = useState(false);
+
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#060a18] px-6 pt-32 pb-20 text-white">
-      {/* High-class animated background */}
-      <HeroBackground />
+      {/* Animated GLSL hills background */}
+      <GLSLHills className="pointer-events-none absolute inset-0 h-full w-full" />
 
-      {/* Spotlight + grid + bottom fade */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-1/4 left-1/3 h-[80vh] w-[90vw] -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.32),transparent_60%)] blur-2xl"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0 [background-image:linear-gradient(rgba(96,165,250,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(96,165,250,0.07)_1px,transparent_1px)] [background-size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_72%)]"
-      />
+      {/* Bottom fade into the section base color */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-linear-to-b from-transparent to-[#060a18]"
@@ -334,7 +131,7 @@ export default function HeroModern() {
             className="mt-9 flex flex-col items-start gap-3 sm:flex-row sm:items-center"
           >
             <motion.a
-              href="#the-program"
+              href="#what-i-help"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               className="group inline-flex items-center gap-2 rounded-none rounded-tl-3xl rounded-br-3xl bg-black px-7 py-3.5 text-base font-semibold text-white shadow-[0_8px_30px_rgba(0,0,0,0.55)] ring-1 ring-inset ring-white/25 transition-all hover:bg-zinc-900 hover:shadow-[0_8px_45px_rgba(0,0,0,0.7)]"
@@ -367,40 +164,6 @@ export default function HeroModern() {
               My Story
             </motion.a>
           </motion.div>
-
-          {/* Social proof */}
-          <motion.div variants={item} className="mt-10 flex items-center gap-3">
-            <div className="flex -space-x-3">
-              {AVATARS.map((id) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={id}
-                  src={`https://i.pravatar.cc/80?img=${id}`}
-                  alt=""
-                  loading="lazy"
-                  className="h-9 w-9 rounded-full border-2 border-[#060a18] object-cover shadow-sm ring-1 ring-white/20"
-                />
-              ))}
-            </div>
-            <div className="text-left">
-              <div className="flex items-center gap-0.5 text-brand-300">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <svg
-                    key={i}
-                    className="h-4 w-4"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 15l-5.2 2.6 1-5.8L1.5 7.7l5.9-.9L10 1.5Z" />
-                  </svg>
-                ))}
-              </div>
-              <p className="text-sm text-zinc-300">
-                Loved by <span className="font-semibold text-white">2,000+</span>{" "}
-                students
-              </p>
-            </div>
-          </motion.div>
         </motion.div>
 
         {/* ---------- Right: visual ---------- */}
@@ -419,13 +182,18 @@ export default function HeroModern() {
           {/* Framed photo */}
           <div className="relative rounded-[2rem] bg-linear-to-br from-white/20 to-white/5 p-[1.5px] shadow-2xl shadow-brand-900/40 backdrop-blur-sm">
             <div className="overflow-hidden rounded-[1.9rem] ring-1 ring-white/10">
-              <Image
-                src={anuPhoto}
-                alt="Anisha, founder of Coaching with Anisha"
-                placeholder="blur"
-                priority
-                sizes="(max-width: 1024px) 90vw, 28rem"
-                className="h-auto w-full object-cover"
+              <video
+                src="/images/hero-video.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                controls={videoControls}
+                onMouseEnter={() => setVideoControls(true)}
+                onMouseLeave={() => setVideoControls(false)}
+                onTouchStart={() => setVideoControls(true)}
+                aria-label="Anisha marketing video"
+                className="h-[80vh] w-full object-cover"
               />
               {/* photo bottom gradient */}
               <div
@@ -434,30 +202,6 @@ export default function HeroModern() {
               />
             </div>
           </div>
-
-          {/* Floating glass card — earnings */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: [0, -12, 0] }}
-            transition={{
-              opacity: { duration: 0.7, delay: 0.7 },
-              y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-            }}
-            className="absolute -left-5 top-10 flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 shadow-2xl shadow-brand-900/40 backdrop-blur-md sm:-left-10"
-          >
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-emerald-400 to-emerald-600 text-white shadow-lg">
-              <svg className="h-5 w-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M3 14l4-4 3 3 6-7" />
-                <path d="M13 6h4v4" />
-              </svg>
-            </span>
-            <div>
-              <p className="bg-linear-to-r from-brand-200 to-white bg-clip-text text-xl font-bold text-transparent">
-                $200K+
-              </p>
-              <p className="text-xs text-zinc-300">Earned online</p>
-            </div>
-          </motion.div>
 
           {/* Floating glass card — income streams */}
           <motion.div
