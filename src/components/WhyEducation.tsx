@@ -195,7 +195,7 @@ export default function WhyEducation() {
 
               <div className="relative">
                 <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700 ring-1 ring-inset ring-brand-200">
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-linear-to-br from-red-500 via-brand-500 to-yellow-400 text-white">
+                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-linear-to-br from-brand-400 to-brand-600 text-white">
                     <Check />
                   </span>
                   My Journey
@@ -246,7 +246,7 @@ export default function WhyEducation() {
                     variants={checkItem}
                     className="group/li relative flex items-start gap-4 rounded-2xl border border-brand-100 bg-white px-4 py-3.5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg hover:shadow-brand-900/5"
                   >
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-red-500 via-brand-500 to-yellow-400 text-white shadow-lg shadow-brand-600/30 transition-transform duration-300 group-hover/li:scale-110 group-hover/li:rotate-3">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-brand-400 to-brand-600 text-white shadow-lg shadow-brand-600/30 transition-transform duration-300 group-hover/li:scale-110 group-hover/li:rotate-3">
                       <svg
                         className="h-5 w-5"
                         viewBox="0 0 24 24"

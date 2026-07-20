@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
 import Reveal from "./Reveal";
 import styles from "./MultipleIncomeStreams.module.css";
 
@@ -119,8 +118,8 @@ const ROW_B = STREAMS.slice(6);
 
 function Pill({ stream }: { stream: Stream }) {
   return (
-    <div className="mr-4 flex shrink-0 items-center gap-3 whitespace-nowrap rounded-full border border-brand-100 bg-white py-3 pl-3 pr-6 shadow-sm transition-all hover:border-brand-300 hover:shadow-md hover:shadow-brand-900/5">
-      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-linear-to-br from-red-500 via-brand-500 to-yellow-400 text-white shadow-md ring-1 ring-inset ring-white/25">
+    <div className="mr-4 flex shrink-0 items-center gap-3 whitespace-nowrap rounded-full bg-white py-3 pl-3 pr-6 shadow-[0_6px_20px_rgba(15,23,42,0.12)] transition-shadow hover:shadow-[0_10px_28px_rgba(15,23,42,0.18)]">
+      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-linear-to-br from-brand-400 to-brand-600 text-white shadow-md ring-1 ring-inset ring-white/25">
         <svg
           className="h-5 w-5"
           viewBox="0 0 20 20"
@@ -144,27 +143,8 @@ export default function MultipleIncomeStreams() {
   return (
     <section
       id="income-streams"
-      className="relative scroll-mt-24 overflow-hidden bg-linear-to-b from-white to-brand-50/60 py-28 text-black sm:py-36"
+      className="relative scroll-mt-24 overflow-hidden bg-white py-28 text-black sm:py-36"
     >
-      {/* Animated glows */}
-      <motion.div
-        aria-hidden
-        animate={{ x: [0, 60, 0], y: [0, -40, 0], scale: [1, 1.2, 1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -left-24 -top-24 h-[32rem] w-[32rem] rounded-full bg-brand-200/50 blur-3xl"
-      />
-      <motion.div
-        aria-hidden
-        animate={{ x: [0, -50, 0], y: [0, 40, 0], scale: [1, 1.25, 1] }}
-        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -bottom-24 -right-20 h-[30rem] w-[30rem] rounded-full bg-brand-300/40 blur-3xl"
-      />
-      {/* Grid texture */}
-      <div
-        aria-hidden
-        className="absolute inset-0 [background-image:linear-gradient(rgba(37,99,235,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.06)_1px,transparent_1px)] [background-size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_78%)]"
-      />
-
       {/* Header */}
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         <Reveal direction="up">
@@ -188,7 +168,7 @@ export default function MultipleIncomeStreams() {
       </div>
 
       {/* Marquee rows */}
-      <div className="relative mt-16 flex flex-col gap-4">
+      <div className={`${styles.rows} mt-16 flex flex-col gap-4`}>
         <div className={styles.marquee}>
           <div className={styles.track}>
             {[...ROW_A, ...ROW_A].map((s, i) => (
@@ -203,6 +183,10 @@ export default function MultipleIncomeStreams() {
             ))}
           </div>
         </div>
+
+        {/* Static edge fades (cheaper than masking the animated track) */}
+        <div aria-hidden className={styles.fadeLeft} />
+        <div aria-hidden className={styles.fadeRight} />
       </div>
     </section>
   );

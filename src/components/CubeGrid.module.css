@@ -6,6 +6,9 @@
   height: 500px;
   position: relative;
   perspective: 1000px;
+  /* Skip rendering/animating the 500 cube faces while off-screen. */
+  content-visibility: auto;
+  contain-intrinsic-size: 500px 500px;
 }
 
 .inner {

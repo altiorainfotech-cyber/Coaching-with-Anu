@@ -191,21 +191,39 @@ export function GLSLHills({
     ).matches;
 
     let raf = 0;
+    let running = false;
     const renderLoop = () => {
       uniforms.time.value += clock.getDelta() * speed;
       renderer.render(scene, camera);
       raf = requestAnimationFrame(renderLoop);
     };
+    const start = () => {
+      if (running) return;
+      running = true;
+      clock.getDelta(); // drop time accumulated while paused
+      raf = requestAnimationFrame(renderLoop);
+    };
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(raf);
+    };
+
+    // Only render while the hero is actually on screen.
+    const io = new IntersectionObserver(
+      (entries) => (entries[0].isIntersecting ? start() : stop()),
+      { threshold: 0 },
+    );
 
     if (reduce) {
       uniforms.time.value = 4;
       renderer.render(scene, camera);
     } else {
-      raf = requestAnimationFrame(renderLoop);
+      io.observe(canvas);
     }
 
     return () => {
-      cancelAnimationFrame(raf);
+      stop();
+      io.disconnect();
       window.removeEventListener("resize", resize);
       geometry.dispose();
       material.dispose();

@@ -28,7 +28,7 @@ export default function About() {
   return (
     <section
       id="my-story"
-      className="relative scroll-mt-24 overflow-hidden bg-linear-to-b from-white to-brand-50/60 py-24 sm:py-32"
+      className="relative scroll-mt-24 overflow-hidden bg-white py-24 sm:py-32"
     >
       {/* Animated 3D cube-grid background */}
       <div
