@@ -116,7 +116,7 @@ export default function StoryTimeline() {
 
         {/* Desktop: tilted 3D winding road */}
         <div
-          className="relative mx-auto mt-24 hidden w-full md:block"
+          className="relative mx-auto mt-8 hidden w-full md:block"
           style={{ perspective: "1700px" }}
         >
           {/* ground shadow */}
