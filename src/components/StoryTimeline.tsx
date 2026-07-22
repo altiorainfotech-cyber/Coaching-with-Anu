@@ -108,43 +108,50 @@ export default function StoryTimeline() {
               className="absolute inset-0 h-full w-full overflow-visible"
               fill="none"
             >
-              {/* road shadow */}
+              <defs>
+                <linearGradient id="asphalt" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stopColor="#3d434f" />
+                  <stop offset="0.5" stopColor="#2b303a" />
+                  <stop offset="1" stopColor="#171a21" />
+                </linearGradient>
+              </defs>
+
+              {/* ground shadow */}
               <path
                 d={ROAD}
-                stroke="rgba(15,23,42,0.18)"
-                strokeWidth="42"
+                stroke="rgba(15,23,42,0.22)"
+                strokeWidth="52"
                 strokeLinecap="round"
-                transform="translate(0,14)"
+                transform="translate(0,20)"
               />
-              {/* road body */}
-              <motion.path
+              {/* light curb / road edge */}
+              <path
                 d={ROAD}
-                stroke="#1e293b"
-                strokeWidth="34"
+                stroke="#eef2f7"
+                strokeWidth="50"
                 strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 1.8, ease: "easeInOut", delay: 0.2 }}
               />
-              {/* dashed centre line */}
-              <motion.path
+              {/* asphalt surface */}
+              <path
                 d={ROAD}
-                stroke="#ffffff"
-                strokeWidth="3"
+                stroke="url(#asphalt)"
+                strokeWidth="40"
                 strokeLinecap="round"
-                strokeDasharray="2 24"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 0.6, delay: 1.7 }}
               />
-              {/* travelling glow dot */}
-              <circle r="7" fill="#60a5fa">
-                <animateMotion dur="7s" repeatCount="indefinite" path={ROAD} />
+              {/* dashed lane line */}
+              <path
+                d={ROAD}
+                stroke="rgba(255,255,255,0.92)"
+                strokeWidth="3.5"
+                strokeLinecap="round"
+                strokeDasharray="18 26"
+              />
+              {/* travelling glow */}
+              <circle r="17" fill="#60a5fa" opacity="0.3">
+                <animateMotion dur="8s" repeatCount="indefinite" path={ROAD} />
               </circle>
-              <circle r="16" fill="#60a5fa" opacity="0.35">
-                <animateMotion dur="7s" repeatCount="indefinite" path={ROAD} />
+              <circle r="6" fill="#dbeafe">
+                <animateMotion dur="8s" repeatCount="indefinite" path={ROAD} />
               </circle>
             </svg>
 
@@ -174,8 +181,15 @@ export default function StoryTimeline() {
                 }}
                 whileHover={{ scale: 1.2, z: 90 }}
               >
-                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-br from-brand-500 to-brand-700 text-xl font-bold text-white shadow-[0_10px_25px_-6px_rgba(37,99,235,0.7)] ring-4 ring-white transition-shadow duration-300 group-hover:shadow-[0_0_36px_6px_rgba(59,130,246,0.75)]">
-                  {s.n}
+                <span className="relative flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-b from-brand-400 via-brand-600 to-brand-800 shadow-[0_12px_26px_-6px_rgba(37,99,235,0.75)] ring-[5px] ring-white transition-shadow duration-300 group-hover:shadow-[0_0_40px_8px_rgba(59,130,246,0.8)]">
+                  {/* glossy top highlight */}
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-x-2.5 top-2 h-3.5 rounded-full bg-white/45 blur-[3px]"
+                  />
+                  <span className="relative text-xl font-extrabold tracking-tight text-white drop-shadow-sm">
+                    {s.n}
+                  </span>
                 </span>
               </motion.a>
             ))}
