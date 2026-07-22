@@ -53,12 +53,13 @@ export default function ProofResults() {
       <div className="relative mx-auto max-w-5xl px-6">
         {/* Header */}
         <Reveal direction="up" className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-amber-300 shadow-sm backdrop-blur-sm">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-300 shadow-sm backdrop-blur-sm">
             Proof It Works
           </span>
           <h2 className="mt-6 font-serif text-4xl capitalize leading-[1.1] text-white sm:text-6xl">
-            Real income.{" "}
-            <em className="bg-linear-to-r from-amber-300 to-fuchsia-400 bg-clip-text text-transparent">
+            Real income.
+            <br />
+            <em className="bg-linear-to-r from-brand-300 to-brand-100 bg-clip-text text-transparent">
               Real results.
             </em>
           </h2>

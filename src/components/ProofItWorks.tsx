@@ -26,12 +26,12 @@ export default function ProofItWorks() {
       <div className="relative mx-auto max-w-3xl px-6">
         {/* Header */}
         <Reveal direction="up" className="text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-amber-300 shadow-sm backdrop-blur-sm">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-300 shadow-sm backdrop-blur-sm">
             My Promise
           </span>
           <h2 className="mt-6 font-serif text-4xl capitalize leading-[1.1] text-white sm:text-6xl">
             My{" "}
-            <em className="bg-linear-to-r from-amber-300 to-fuchsia-400 bg-clip-text text-transparent">
+            <em className="bg-linear-to-r from-brand-300 to-brand-100 bg-clip-text text-transparent">
               Promise
             </em>{" "}
             to you
@@ -52,7 +52,7 @@ export default function ProofItWorks() {
           </p>
           <p className="text-xl font-medium leading-9 text-white sm:text-2xl">
             But I{" "}
-            <em className="bg-linear-to-r from-amber-300 to-fuchsia-400 bg-clip-text not-italic text-transparent">
+            <em className="bg-linear-to-r from-brand-300 to-brand-100 bg-clip-text not-italic text-transparent">
               will
             </em>{" "}
             show you the same strategies, systems, and mindset that helped me go

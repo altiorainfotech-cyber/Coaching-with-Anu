@@ -116,7 +116,7 @@ export default function IncomeStreams() {
               className={`group relative flex w-full flex-col overflow-hidden rounded-none rounded-tl-3xl rounded-br-3xl p-7 shadow-sm transition-shadow duration-300 sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.834rem)] ${
                 s.featured
                   ? "bg-linear-to-br from-brand-600 via-brand-700 to-brand-800 text-white shadow-xl shadow-brand-900/25 ring-1 ring-inset ring-white/10"
-                  : "border border-brand-100 bg-white/90 backdrop-blur-sm hover:shadow-xl hover:shadow-brand-900/15"
+                  : "bg-[#060a18] text-white ring-1 ring-inset ring-white/10 hover:shadow-xl hover:shadow-brand-900/30"
               }`}
             >
               {/* Blue wash that fades in on hover (non-featured cards) */}
@@ -144,11 +144,7 @@ export default function IncomeStreams() {
                 </span>
 
                 <h3
-                  className={`text-lg font-semibold leading-snug ${
-                    s.featured
-                      ? "text-white"
-                      : "text-black group-hover:text-white"
-                  }`}
+                  className="text-lg font-semibold leading-snug text-white"
                 >
                   {s.name}
                 </h3>
