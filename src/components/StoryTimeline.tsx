@@ -10,6 +10,7 @@ type Step = {
   x: number; // % of viewBox width
   y: number; // % of viewBox height
   place: "above" | "below";
+  icon: React.ReactNode;
 };
 
 const STEPS: Step[] = [
@@ -20,6 +21,10 @@ const STEPS: Step[] = [
     x: 10,
     y: 72,
     place: "above",
+    // sparkle / star
+    icon: (
+      <path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2L12 3z" />
+    ),
   },
   {
     n: "02",
@@ -28,6 +33,13 @@ const STEPS: Step[] = [
     x: 30,
     y: 33,
     place: "below",
+    // briefcase
+    icon: (
+      <>
+        <path d="M4 8h16v11H4z" />
+        <path d="M9 8V6a2 2 0 012-2h2a2 2 0 012 2v2" />
+      </>
+    ),
   },
   {
     n: "03",
@@ -36,6 +48,13 @@ const STEPS: Step[] = [
     x: 50,
     y: 68,
     place: "above",
+    // lightbulb
+    icon: (
+      <>
+        <path d="M9.5 18h5M10.5 21h3" />
+        <path d="M12 3a6 6 0 00-3.5 10.9c.6.4 1 1.1 1 1.8h5c0-.7.4-1.4 1-1.8A6 6 0 0012 3z" />
+      </>
+    ),
   },
   {
     n: "04",
@@ -44,6 +63,13 @@ const STEPS: Step[] = [
     x: 70,
     y: 33,
     place: "below",
+    // rocket
+    icon: (
+      <>
+        <path d="M12 2c2.8 2 4 4.8 4 7.5 0 1.5-.4 2.9-1 4.1l-3 2-3-2c-.6-1.2-1-2.6-1-4.1C8 6.8 9.2 4 12 2z" />
+        <path d="M9 15l-2 2m8-2l2 2" />
+      </>
+    ),
   },
   {
     n: "05",
@@ -52,6 +78,10 @@ const STEPS: Step[] = [
     x: 90,
     y: 66,
     place: "above",
+    // heart
+    icon: (
+      <path d="M12 20s-6.5-4.2-9-8C1.5 9.3 3 6 6.3 6 8.4 6 12 8.5 12 8.5S15.6 6 17.7 6C21 6 22.5 9.3 21 12c-2.5 3.8-9 8-9 8z" />
+    ),
   },
 ];
 
@@ -116,14 +146,6 @@ export default function StoryTimeline() {
                 </linearGradient>
               </defs>
 
-              {/* ground shadow */}
-              <path
-                d={ROAD}
-                stroke="rgba(15,23,42,0.22)"
-                strokeWidth="52"
-                strokeLinecap="round"
-                transform="translate(0,20)"
-              />
               {/* light curb / road edge */}
               <path
                 d={ROAD}
@@ -187,9 +209,17 @@ export default function StoryTimeline() {
                     aria-hidden
                     className="pointer-events-none absolute inset-x-2.5 top-2 h-3.5 rounded-full bg-white/45 blur-[3px]"
                   />
-                  <span className="relative text-xl font-extrabold tracking-tight text-white drop-shadow-sm">
-                    {s.n}
-                  </span>
+                  <svg
+                    className="relative h-7 w-7 text-white drop-shadow-sm"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.9"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    {s.icon}
+                  </svg>
                 </span>
               </motion.a>
             ))}
@@ -228,8 +258,18 @@ export default function StoryTimeline() {
           {STEPS.map((s) => (
             <Reveal key={s.n} direction="up">
               <div className="flex items-start gap-4 rounded-2xl border border-zinc-100 bg-white p-5 shadow-sm">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-brand-500 to-brand-700 font-bold text-white shadow-md">
-                  {s.n}
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-brand-500 to-brand-700 text-white shadow-md">
+                  <svg
+                    className="h-5 w-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.9"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    {s.icon}
+                  </svg>
                 </span>
                 <div>
                   <h3 className="font-bold text-black">{s.title}</h3>
