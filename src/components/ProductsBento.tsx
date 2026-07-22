@@ -76,7 +76,7 @@ export default function ProductsBento() {
             </em>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-zinc-300">
-            Explore my programs and mentorships — from making your first $1000
+            Explore my programs and mentorships, from making your first $1000
             online to building a brand that scales. Pick the one that matches
             where you are right now.
           </p>

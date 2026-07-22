@@ -179,8 +179,8 @@ export default function About() {
               while I studied, worked, travelled, or spent time with family.
             </p>
             <p>
-              Now my mission is simple: to help ambitious people&mdash;especially
-              students, immigrants, and beginners&mdash;learn the same skills so
+              Now my mission is simple: to help ambitious people, especially
+              students, immigrants, and beginners, learn the same skills so
               they can create financial freedom on their own terms.
             </p>
           </motion.div>

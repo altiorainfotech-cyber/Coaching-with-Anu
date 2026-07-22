@@ -37,6 +37,12 @@
   gap: 0;
   width: max-content;
   animation: scroll 36s linear infinite;
+  /* Keep the track on its own permanent GPU layer so the compositor never
+     re-rasterizes it mid-scroll (that re-raster is what causes the periodic
+     micro-pause). translate3d + backface-visibility force + hold the layer. */
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
 }
 
 .reverse {
@@ -45,10 +51,10 @@
 
 @keyframes scroll {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 

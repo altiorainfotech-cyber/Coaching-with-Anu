@@ -187,7 +187,7 @@ export default function HeroModern() {
               That&rsquo;s when I discovered digital income. Today, I&rsquo;m
               helping people create an online income stream using digital
               products, personal branding, and simple systems that actually
-              work&mdash;even if you&rsquo;re starting from zero.
+              work, even if you&rsquo;re starting from zero.
             </p>
             <p className="font-medium text-white">
               Your background doesn&rsquo;t determine your future. Your next

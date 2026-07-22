@@ -12,7 +12,7 @@ type Step = {
 const PROCESS = {
   title: "What I Help You With",
   subtitle:
-    "Tap through each step — the exact skills I teach you to build real online income, from zero to your first sale and beyond.",
+    "Tap through each step: the exact skills I teach you to build real online income, from zero to your first sale and beyond.",
   gradientColors: ["#93c5fd", "#3b82f6", "#1d4ed8"],
   steps: [
     {
@@ -20,7 +20,7 @@ const PROCESS = {
       icon: "💰",
       title: "Build digital income streams",
       description:
-        "Set up online income streams from scratch — the foundation everything else builds on.",
+        "Set up online income streams from scratch, the foundation everything else builds on.",
     },
     {
       step: 2,
@@ -60,7 +60,7 @@ const PROCESS = {
       step: 7,
       icon: "🚀",
       title: "Earn online without needing a huge audience",
-      description: "Start earning online — no huge following required.",
+      description: "Start earning online, no huge following required.",
     },
   ] as Step[],
 };
@@ -90,7 +90,7 @@ export default function OurProcess() {
           </span>
           <h2 className="mt-6 font-serif text-4xl capitalize leading-[1.1] text-black sm:text-5xl">
             I help beginners learn how to build a{" "}
-            <em className="text-brand-600">real online income</em> — from zero,
+            <em className="text-brand-600">real online income</em>, from zero,
             step by step.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-zinc-600">

@@ -40,7 +40,7 @@ export default function CtaBanner() {
 
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-brand-100">
               Stop watching random videos. Stop downloading free guides that lead
-              nowhere. Get structured education with a real mentor — and actually
+              nowhere. Get structured education with a real mentor, and actually
               start building the life you want.
             </p>
 

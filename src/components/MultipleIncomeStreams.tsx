@@ -161,7 +161,7 @@ export default function MultipleIncomeStreams() {
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-600">
             Most coaches teach one method and leave you there. I teach you
             everything I personally use to build{" "}
-            <span className="font-semibold text-black">4 income streams</span> —
+            <span className="font-semibold text-black">4 income streams</span>,
             so you&apos;re never dependent on just one source.
           </p>
         </Reveal>
