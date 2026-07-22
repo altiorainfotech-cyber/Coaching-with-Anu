@@ -203,7 +203,7 @@ export default function StoryTimeline() {
                 }}
                 whileHover={{ scale: 1.2, z: 90 }}
               >
-                <span className="relative flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-b from-brand-400 via-brand-600 to-brand-800 shadow-[0_12px_26px_-6px_rgba(37,99,235,0.75)] ring-[5px] ring-white transition-shadow duration-300 group-hover:shadow-[0_0_40px_8px_rgba(59,130,246,0.8)]">
+                <span className="relative flex h-16 w-16 items-center justify-center rounded-full bg-brand-600 shadow-[0_12px_26px_-6px_rgba(37,99,235,0.75)] ring-[5px] ring-white transition-shadow duration-300 group-hover:shadow-[0_0_40px_8px_rgba(59,130,246,0.8)]">
                   {/* glossy top highlight */}
                   <span
                     aria-hidden
@@ -258,7 +258,7 @@ export default function StoryTimeline() {
           {STEPS.map((s) => (
             <Reveal key={s.n} direction="up">
               <div className="flex items-start gap-4 rounded-2xl border border-zinc-100 bg-white p-5 shadow-sm">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-brand-500 to-brand-700 text-white shadow-md">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-600 text-white shadow-md">
                   <svg
                     className="h-5 w-5"
                     viewBox="0 0 24 24"
