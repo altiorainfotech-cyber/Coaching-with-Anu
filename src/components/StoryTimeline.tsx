@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import Reveal from "./Reveal";
 
 type Step = {
@@ -64,7 +65,7 @@ export default function StoryTimeline() {
       id="my-story-timeline"
       className="relative scroll-mt-24 overflow-hidden bg-white py-24 sm:py-32"
     >
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
         <Reveal direction="up" className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-600 shadow-sm">
@@ -83,74 +84,130 @@ export default function StoryTimeline() {
           </p>
         </Reveal>
 
-        {/* Desktop: winding road */}
-        <Reveal
-          direction="up"
-          delay={0.1}
-          className="relative mx-auto mt-16 hidden w-full max-w-5xl md:block"
+        {/* Desktop: tilted 3D winding road */}
+        <div
+          className="relative mx-auto mt-24 hidden w-full md:block"
+          style={{ perspective: "1700px" }}
         >
-          <div className="relative" style={{ aspectRatio: "1000 / 460" }}>
+          {/* ground shadow */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-10 bottom-0 h-24 rounded-[50%] bg-brand-900/10 blur-2xl"
+          />
+
+          <motion.div
+            initial={{ opacity: 0, rotateX: 38 }}
+            whileInView={{ opacity: 1, rotateX: 22 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            className="relative w-full"
+            style={{ aspectRatio: "1000 / 460", transformStyle: "preserve-3d" }}
+          >
             <svg
               viewBox="0 0 1000 460"
-              className="absolute inset-0 h-full w-full"
+              className="absolute inset-0 h-full w-full overflow-visible"
               fill="none"
             >
               {/* road shadow */}
               <path
                 d={ROAD}
-                stroke="rgba(15,23,42,0.12)"
-                strokeWidth="40"
+                stroke="rgba(15,23,42,0.18)"
+                strokeWidth="42"
                 strokeLinecap="round"
-                transform="translate(0,8)"
+                transform="translate(0,14)"
               />
-              {/* road */}
-              <path
+              {/* road body */}
+              <motion.path
                 d={ROAD}
                 stroke="#1e293b"
                 strokeWidth="34"
                 strokeLinecap="round"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 1.8, ease: "easeInOut", delay: 0.2 }}
               />
               {/* dashed centre line */}
-              <path
+              <motion.path
                 d={ROAD}
                 stroke="#ffffff"
                 strokeWidth="3"
                 strokeLinecap="round"
                 strokeDasharray="2 24"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.6, delay: 1.7 }}
               />
+              {/* travelling glow dot */}
+              <circle r="7" fill="#60a5fa">
+                <animateMotion dur="7s" repeatCount="indefinite" path={ROAD} />
+              </circle>
+              <circle r="16" fill="#60a5fa" opacity="0.35">
+                <animateMotion dur="7s" repeatCount="indefinite" path={ROAD} />
+              </circle>
             </svg>
 
-            {STEPS.map((s) => (
-              <div key={s.n}>
-                {/* Pin */}
-                <div
-                  className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
-                  style={{ left: `${s.x}%`, top: `${s.y}%` }}
-                >
-                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-linear-to-br from-brand-500 to-brand-700 text-lg font-bold text-white shadow-lg shadow-brand-600/40 ring-4 ring-white">
-                    {s.n}
-                  </span>
-                </div>
-
-                {/* Text */}
-                <div
-                  className="absolute w-44 -translate-x-1/2 -translate-y-1/2 text-center"
-                  style={{
-                    left: `${s.x}%`,
-                    top: `${s.place === "above" ? s.y - 26 : s.y + 26}%`,
-                  }}
-                >
-                  <h3 className="text-base font-bold leading-snug text-black">
-                    {s.title}
-                  </h3>
-                  <p className="mt-1 text-sm leading-snug text-zinc-500">
-                    {s.desc}
-                  </p>
-                </div>
-              </div>
+            {/* Pins */}
+            {STEPS.map((s, i) => (
+              <motion.a
+                key={s.n}
+                href="#what-i-help"
+                className="group absolute z-20"
+                style={{
+                  left: `${s.x}%`,
+                  top: `${s.y}%`,
+                  x: "-50%",
+                  y: "-50%",
+                  z: 55,
+                  rotateX: -22,
+                  transformStyle: "preserve-3d",
+                }}
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{
+                  delay: 0.7 + i * 0.18,
+                  type: "spring",
+                  stiffness: 240,
+                  damping: 15,
+                }}
+                whileHover={{ scale: 1.2, z: 90 }}
+              >
+                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-br from-brand-500 to-brand-700 text-xl font-bold text-white shadow-[0_10px_25px_-6px_rgba(37,99,235,0.7)] ring-4 ring-white transition-shadow duration-300 group-hover:shadow-[0_0_36px_6px_rgba(59,130,246,0.75)]">
+                  {s.n}
+                </span>
+              </motion.a>
             ))}
-          </div>
-        </Reveal>
+
+            {/* Captions */}
+            {STEPS.map((s, i) => (
+              <motion.div
+                key={`c-${s.n}`}
+                className="absolute w-48 text-center"
+                style={{
+                  left: `${s.x}%`,
+                  top: `${s.place === "above" ? s.y - 27 : s.y + 27}%`,
+                  x: "-50%",
+                  y: "-50%",
+                  z: 25,
+                  rotateX: -22,
+                }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ delay: 0.9 + i * 0.18, duration: 0.5 }}
+              >
+                <h3 className="text-base font-bold leading-snug text-black">
+                  {s.title}
+                </h3>
+                <p className="mt-1 text-sm leading-snug text-zinc-500">
+                  {s.desc}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
 
         {/* Mobile: vertical steps */}
         <div className="mt-12 space-y-4 md:hidden">
@@ -172,7 +229,7 @@ export default function StoryTimeline() {
         </div>
 
         {/* CTA */}
-        <Reveal direction="up" className="mt-14 flex justify-center">
+        <Reveal direction="up" className="mt-16 flex justify-center">
           <a
             href="#what-i-help"
             className="group inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50/70 px-6 py-3 text-sm font-semibold text-brand-700 shadow-sm transition-all duration-300 hover:gap-3 hover:border-brand-300 hover:bg-brand-100/70 hover:shadow-md"
