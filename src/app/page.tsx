@@ -2,6 +2,7 @@ import HeroModern from "@/components/HeroModern";
 import StatsBar from "@/components/StatsBar";
 import About from "@/components/About";
 import WhyEducation from "@/components/WhyEducation";
+import StoryTimeline from "@/components/StoryTimeline";
 import ProductsBento from "@/components/ProductsBento";
 import OurProcess from "@/components/OurProcess";
 import IncomeStreams from "@/components/IncomeStreams";
@@ -19,6 +20,7 @@ export default function Home() {
       <StatsBar />
       <About />
       <WhyEducation />
+      <StoryTimeline />
       <ProductsBento />
       <OurProcess />
       <ProofItWorks />
