@@ -93,7 +93,7 @@ export default function StoryTimeline() {
   return (
     <section
       id="my-story-timeline"
-      className="relative scroll-mt-24 overflow-hidden bg-[#060a18] py-24 text-white sm:py-32"
+      className="relative scroll-mt-24 overflow-hidden bg-white py-24 sm:py-32"
     >
       <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
@@ -101,14 +101,14 @@ export default function StoryTimeline() {
           <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-600 shadow-sm">
             My Journey
           </span>
-          <h2 className="mt-6 font-serif text-4xl leading-[1.1] text-white sm:text-5xl">
+          <h2 className="mt-6 font-serif text-4xl leading-[1.1] text-black sm:text-5xl">
             My{" "}
-            <em className="bg-linear-to-r from-brand-300 to-brand-100 bg-clip-text text-transparent">
+            <em className="bg-linear-to-r from-brand-500 to-brand-700 bg-clip-text text-transparent">
               Story
             </em>{" "}
             Timeline
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-zinc-300">
+          <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-zinc-600">
             From a one-way ticket to Canada to teaching others online —
             here&apos;s how the journey unfolded, one decision at a time.
           </p>
@@ -242,10 +242,10 @@ export default function StoryTimeline() {
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ delay: 0.9 + i * 0.18, duration: 0.5 }}
               >
-                <h3 className="text-base font-bold leading-snug text-white">
+                <h3 className="text-base font-bold leading-snug text-black">
                   {s.title}
                 </h3>
-                <p className="mt-1 text-sm leading-snug text-zinc-400">
+                <p className="mt-1 text-sm leading-snug text-zinc-500">
                   {s.desc}
                 </p>
               </motion.div>
@@ -257,7 +257,7 @@ export default function StoryTimeline() {
         <div className="mt-12 space-y-4 md:hidden">
           {STEPS.map((s) => (
             <Reveal key={s.n} direction="up">
-              <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 shadow-sm">
+              <div className="flex items-start gap-4 rounded-2xl border border-zinc-100 bg-white p-5 shadow-sm">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-600 text-white shadow-md">
                   <svg
                     className="h-5 w-5"
@@ -272,8 +272,8 @@ export default function StoryTimeline() {
                   </svg>
                 </span>
                 <div>
-                  <h3 className="font-bold text-white">{s.title}</h3>
-                  <p className="mt-1 text-sm leading-6 text-zinc-300">
+                  <h3 className="font-bold text-black">{s.title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-zinc-600">
                     {s.desc}
                   </p>
                 </div>
@@ -286,7 +286,7 @@ export default function StoryTimeline() {
         <Reveal direction="up" className="mt-8 flex justify-center">
           <a
             href="#what-i-help"
-            className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:gap-3 hover:border-white/25 hover:bg-white/10 hover:shadow-md"
+            className="group inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50/70 px-6 py-3 text-sm font-semibold text-brand-700 shadow-sm transition-all duration-300 hover:gap-3 hover:border-brand-300 hover:bg-brand-100/70 hover:shadow-md"
           >
             Start your own journey
             <svg
