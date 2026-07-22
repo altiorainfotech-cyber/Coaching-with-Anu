@@ -54,9 +54,9 @@ export default function WhyEducation() {
               Canada, I spent countless hours watching videos, reading posts, and
               trying to figure out what was actually real and what was just
               another internet trend. The hardest part wasn&apos;t finding
-              information&mdash;
+              information.{" "}
               <span className="font-semibold text-white">
-                it was knowing who to trust.
+                It was knowing who to trust.
               </span>
             </p>
             <p>
@@ -69,7 +69,7 @@ export default function WhyEducation() {
             <p>
               You don&apos;t need to learn everything. You just need to learn{" "}
               <span className="font-semibold text-white">
-                the right things&mdash;from someone who&apos;s already walked the
+                the right things, from someone who&apos;s already walked the
                 path.
               </span>
             </p>
@@ -82,7 +82,7 @@ export default function WhyEducation() {
           className="mx-auto mt-10 max-w-4xl text-center text-base text-zinc-400"
         >
           No structure. No sequence. No accountability. Every creator teaches
-          something different — and you end up{" "}
+          something different, and you end up{" "}
           <span className="font-medium text-white">
             more confused than when you started.
           </span>

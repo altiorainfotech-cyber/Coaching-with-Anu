@@ -109,7 +109,7 @@ export default function StoryTimeline() {
             Timeline
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-zinc-600">
-            From a one-way ticket to Canada to teaching others online —
+            From a one-way ticket to Canada to teaching others online,
             here&apos;s how the journey unfolded, one decision at a time.
           </p>
         </Reveal>

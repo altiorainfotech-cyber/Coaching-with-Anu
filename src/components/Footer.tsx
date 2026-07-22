@@ -29,7 +29,7 @@ export default function Footer() {
             <a
               href="#top"
               className="text-2xl font-semibold tracking-tight text-white"
-              aria-label="Anisha Blueprint — home"
+              aria-label="Anisha Blueprint home"
             >
               anisha <span className="text-brand-300">blueprint</span>
             </a>
@@ -37,7 +37,7 @@ export default function Footer() {
               From international student to digital entrepreneur.
             </p>
             <p className="mt-4 max-w-sm text-sm leading-7 text-white/80">
-              Structured online business education with a real mentor — so you
+              Structured online business education with a real mentor, so you
               stop guessing and start building multiple income streams.
             </p>
             <a

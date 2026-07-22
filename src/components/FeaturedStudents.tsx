@@ -17,8 +17,8 @@ const SLIDES: Slide[] = [
     name: "Build Freedom",
     tag: "Beyond Income",
     quote:
-      "“Don't just build income. Build freedom. The goal isn't just to make more money — it's about something bigger than the numbers.”",
-    author: "— It starts with a bigger why",
+      "“Don't just build income. Build freedom. The goal isn't just to make more money, it's about something bigger than the numbers.”",
+    author: "It starts with a bigger why",
     bg: "#16233b",
     img: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=900&q=80",
   },
@@ -26,8 +26,8 @@ const SLIDES: Slide[] = [
     name: "More Time",
     tag: "Time Freedom",
     quote:
-      "“It's to create a life where your income isn't tied to your time — where earning no longer costs you every hour of your day.”",
-    author: "— Earn without trading every hour",
+      "“It's to create a life where your income isn't tied to your time, where earning no longer costs you every hour of your day.”",
+    author: "Earn without trading every hour",
     bg: "#1f2937",
     img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80",
   },
@@ -35,8 +35,8 @@ const SLIDES: Slide[] = [
     name: "More Choices",
     tag: "On Your Terms",
     quote:
-      "“Where you have more choices — the freedom to decide how, when, and where you live, work, and travel.”",
-    author: "— Your life, your rules",
+      "“Where you have more choices, the freedom to decide how, when, and where you live, work, and travel.”",
+    author: "Your life, your rules",
     bg: "#2a2440",
     img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80",
   },
@@ -45,7 +45,7 @@ const SLIDES: Slide[] = [
     tag: "Live Fully",
     quote:
       "“More freedom. More confidence. The quiet certainty that comes from building something that's truly yours.”",
-    author: "— The real goal",
+    author: "The real goal",
     bg: "#11302b",
     img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80",
   },

@@ -154,7 +154,7 @@ export default function ProofResults() {
           direction="up"
           className="mx-auto mt-16 max-w-md text-center text-sm text-zinc-400"
         >
-          Unedited and taken directly from my own accounts — this is what a
+          Unedited and taken directly from my own accounts. This is what a
           structured path actually produces.
         </Reveal>
       </div>

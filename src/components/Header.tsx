@@ -54,7 +54,7 @@ export default function Header() {
           <a
             href="#top"
             className="flex shrink-0 flex-col items-start justify-self-start leading-tight"
-            aria-label="Anisha Blueprint — home"
+            aria-label="Anisha Blueprint home"
           >
             <span
               className={`text-xl font-semibold tracking-tight transition-colors ${
