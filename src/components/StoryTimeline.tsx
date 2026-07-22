@@ -116,7 +116,7 @@ export default function StoryTimeline() {
 
         {/* Desktop: tilted 3D winding road */}
         <div
-          className="relative mx-auto mt-8 hidden w-full md:block"
+          className="relative mx-auto -mb-24 -mt-16 hidden w-full md:block"
           style={{ perspective: "1700px" }}
         >
           {/* ground shadow */}
@@ -283,7 +283,7 @@ export default function StoryTimeline() {
         </div>
 
         {/* CTA */}
-        <Reveal direction="up" className="mt-16 flex justify-center">
+        <Reveal direction="up" className="mt-8 flex justify-center">
           <a
             href="#what-i-help"
             className="group inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50/70 px-6 py-3 text-sm font-semibold text-brand-700 shadow-sm transition-all duration-300 hover:gap-3 hover:border-brand-300 hover:bg-brand-100/70 hover:shadow-md"
