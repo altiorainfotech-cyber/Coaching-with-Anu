@@ -84,7 +84,7 @@ export default function IncomeStreams() {
   return (
     <section
       id="multiple-income-streams"
-      className="relative scroll-mt-24 overflow-hidden bg-white py-28 text-black sm:py-36"
+      className="relative scroll-mt-24 overflow-hidden bg-white pt-0 pb-28 text-black sm:pb-36"
     >
 
       <div className="relative mx-auto max-w-6xl px-6">
@@ -94,7 +94,8 @@ export default function IncomeStreams() {
             Who This Is For
           </span>
           <h2 className="mt-6 font-serif text-4xl capitalize leading-[1.1] text-black sm:text-5xl">
-            This is for <em className="text-brand-600">you</em> if&hellip;
+            This is for <em className="text-brand-600">you</em>{" "}
+            if&hellip;
           </h2>
         </Reveal>
 

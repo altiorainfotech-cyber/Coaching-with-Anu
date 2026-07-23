@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { motion, useAnimationFrame, useMotionValue } from "motion/react";
 import Reveal from "./Reveal";
 
 type Step = {
@@ -89,7 +90,76 @@ const STEPS: Step[] = [
 const ROAD =
   "M100,331 C200,331 200,152 300,152 S400,313 500,313 S600,152 700,152 S800,304 900,304";
 
+// How long the dot takes to travel the road once, then it stops at the end. Higher = slower.
+const TRAVEL_MS = 22000;
+
 export default function StoryTimeline() {
+  const roadPathRef = useRef<SVGPathElement>(null);
+  const dotX = useMotionValue(100);
+  const dotY = useMotionValue(331);
+  const progressRef = useRef(0);
+  const [stepLengths, setStepLengths] = useState<number[] | null>(null);
+  const [totalLength, setTotalLength] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
+
+  // Once the road path is in the DOM, find how far along it (in path-length
+  // units) each pin sits, so we can tell which pin the dot is nearest to.
+  useEffect(() => {
+    const path = roadPathRef.current;
+    if (!path) return;
+    const total = path.getTotalLength();
+    setTotalLength(total);
+
+    const SAMPLES = 1000;
+    const lengths = STEPS.map((s) => {
+      const targetX = (s.x / 100) * 1000;
+      const targetY = (s.y / 100) * 460;
+      let best = 0;
+      let bestDist = Infinity;
+      for (let i = 0; i <= SAMPLES; i++) {
+        const len = (i / SAMPLES) * total;
+        const { x, y } = path.getPointAtLength(len);
+        const dist = (x - targetX) ** 2 + (y - targetY) ** 2;
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = len;
+        }
+      }
+      return best;
+    });
+    setStepLengths(lengths);
+  }, []);
+
+  useAnimationFrame((_, delta) => {
+    if (!totalLength || !stepLengths) return;
+    if (progressRef.current >= 1) return;
+    progressRef.current = Math.min(1, progressRef.current + delta / TRAVEL_MS);
+    const length = progressRef.current * totalLength;
+
+    const path = roadPathRef.current;
+    if (path) {
+      const { x, y } = path.getPointAtLength(length);
+      dotX.set(x);
+      dotY.set(y);
+    }
+
+    // The last pin lights up like the others as the dot reaches it, but once
+    // the dot finishes its run there, everything settles back to normal
+    // instead of staying highlighted forever.
+    const finished = progressRef.current >= 1;
+    let nearest = 0;
+    let nearestDist = Infinity;
+    stepLengths.forEach((stepLen, i) => {
+      const dist = Math.abs(stepLen - length);
+      if (dist < nearestDist) {
+        nearestDist = dist;
+        nearest = i;
+      }
+    });
+    const next = finished ? null : nearest;
+    setActiveIndex((prev) => (prev === next ? prev : next));
+  });
+
   return (
     <section
       id="my-story-timeline"
@@ -155,6 +225,7 @@ export default function StoryTimeline() {
               />
               {/* asphalt surface */}
               <path
+                ref={roadPathRef}
                 d={ROAD}
                 stroke="url(#asphalt)"
                 strokeWidth="40"
@@ -169,87 +240,109 @@ export default function StoryTimeline() {
                 strokeDasharray="18 26"
               />
               {/* travelling glow */}
-              <circle r="17" fill="#60a5fa" opacity="0.3">
-                <animateMotion dur="8s" repeatCount="indefinite" path={ROAD} />
-              </circle>
-              <circle r="6" fill="#dbeafe">
-                <animateMotion dur="8s" repeatCount="indefinite" path={ROAD} />
-              </circle>
+              <motion.circle r="17" fill="#60a5fa" opacity="0.3" cx={dotX} cy={dotY} />
+              <motion.circle r="6" fill="#dbeafe" cx={dotX} cy={dotY} />
             </svg>
 
             {/* Pins */}
-            {STEPS.map((s, i) => (
-              <motion.a
-                key={s.n}
-                href="#what-i-help"
-                className="group absolute z-20"
-                style={{
-                  left: `${s.x}%`,
-                  top: `${s.y}%`,
-                  x: "-50%",
-                  y: "-50%",
-                  z: 55,
-                  rotateX: -22,
-                  transformStyle: "preserve-3d",
-                }}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{
-                  delay: 0.7 + i * 0.18,
-                  type: "spring",
-                  stiffness: 240,
-                  damping: 15,
-                }}
-                whileHover={{ scale: 1.2, z: 90 }}
-              >
-                <span className="relative flex h-16 w-16 items-center justify-center rounded-full bg-brand-600 shadow-[0_12px_26px_-6px_rgba(37,99,235,0.75)] ring-[5px] ring-white transition-shadow duration-300 group-hover:shadow-[0_0_40px_8px_rgba(59,130,246,0.8)]">
-                  {/* glossy top highlight */}
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute inset-x-2.5 top-2 h-3.5 rounded-full bg-white/45 blur-[3px]"
-                  />
-                  <svg
-                    className="relative h-7 w-7 text-white drop-shadow-sm"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.9"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+            {STEPS.map((s, i) => {
+              const isActive = activeIndex === i;
+              return (
+                <motion.a
+                  key={s.n}
+                  href="#what-i-help"
+                  className="group absolute z-20"
+                  style={{
+                    left: `${s.x}%`,
+                    top: `${s.y}%`,
+                    x: "-50%",
+                    y: "-50%",
+                    z: 55,
+                    rotateX: -22,
+                    transformStyle: "preserve-3d",
+                  }}
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, amount: 0.35 }}
+                  transition={{
+                    delay: 0.7 + i * 0.18,
+                    type: "spring",
+                    stiffness: 240,
+                    damping: 15,
+                  }}
+                  whileHover={{ scale: 1.2, z: 90 }}
+                >
+                  <motion.span
+                    animate={{ scale: isActive ? 1.3 : 1 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 16 }}
+                    className={`relative flex h-16 w-16 items-center justify-center rounded-full bg-brand-600 ring-[5px] ring-white transition-shadow duration-300 group-hover:shadow-[0_0_40px_8px_rgba(59,130,246,0.8)] ${
+                      isActive
+                        ? "shadow-[0_0_40px_10px_rgba(59,130,246,0.85)]"
+                        : "shadow-[0_12px_26px_-6px_rgba(37,99,235,0.75)]"
+                    }`}
                   >
-                    {s.icon}
-                  </svg>
-                </span>
-              </motion.a>
-            ))}
+                    {/* glossy top highlight */}
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-x-2.5 top-2 h-3.5 rounded-full bg-white/45 blur-[3px]"
+                    />
+                    <svg
+                      className="relative h-7 w-7 text-white drop-shadow-sm"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.9"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      {s.icon}
+                    </svg>
+                  </motion.span>
+                </motion.a>
+              );
+            })}
 
             {/* Captions */}
-            {STEPS.map((s, i) => (
-              <motion.div
-                key={`c-${s.n}`}
-                className="absolute w-48 text-center"
-                style={{
-                  left: `${s.x}%`,
-                  top: `${s.place === "above" ? s.y - 27 : s.y + 27}%`,
-                  x: "-50%",
-                  y: "-50%",
-                  z: 25,
-                  rotateX: -22,
-                }}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{ delay: 0.9 + i * 0.18, duration: 0.5 }}
-              >
-                <h3 className="text-base font-bold leading-snug text-black">
-                  {s.title}
-                </h3>
-                <p className="mt-1 text-sm leading-snug text-zinc-500">
-                  {s.desc}
-                </p>
-              </motion.div>
-            ))}
+            {STEPS.map((s, i) => {
+              const isActive = activeIndex === i;
+              return (
+                <motion.div
+                  key={`c-${s.n}`}
+                  className="absolute w-48 text-center"
+                  style={{
+                    left: `${s.x}%`,
+                    top: `${s.place === "above" ? s.y - 27 : s.y + 27}%`,
+                    x: "-50%",
+                    y: "-50%",
+                    z: 25,
+                    rotateX: -22,
+                  }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true, amount: 0.35 }}
+                  animate={{ scale: isActive ? 1.1 : 1 }}
+                  transition={{
+                    opacity: { delay: 0.9 + i * 0.18, duration: 0.5 },
+                    scale: { type: "spring", stiffness: 260, damping: 18 },
+                  }}
+                >
+                  <h3
+                    className={`text-base font-bold leading-snug transition-colors duration-300 ${
+                      isActive ? "text-brand-700" : "text-black"
+                    }`}
+                  >
+                    {s.title}
+                  </h3>
+                  <p
+                    className={`mt-1 text-sm leading-snug transition-colors duration-300 ${
+                      isActive ? "text-zinc-700" : "text-zinc-500"
+                    }`}
+                  >
+                    {s.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
 
