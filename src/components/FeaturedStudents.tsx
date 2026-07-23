@@ -40,15 +40,6 @@ const SLIDES: Slide[] = [
     bg: "#2a2440",
     img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80",
   },
-  {
-    name: "More Confidence",
-    tag: "Live Fully",
-    quote:
-      "“More freedom. More confidence. The quiet certainty that comes from building something that's truly yours.”",
-    author: "The real goal",
-    bg: "#11302b",
-    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80",
-  },
 ];
 
 const SPIN_DUR = 1000;
