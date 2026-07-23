@@ -192,7 +192,7 @@ export default function Pricing() {
             rel="noopener noreferrer"
             className="font-semibold text-brand-600 transition-colors hover:text-brand-700"
           >
-            @Anishaxsidhu
+            @anishablueprint
           </a>
         </Reveal>
       </div>
