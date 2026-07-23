@@ -60,7 +60,7 @@ export default function HeroModern() {
     const v = videoRef.current;
     if (!v) return;
 
-    // Start 2s after load, with sound. Browsers block unmuted autoplay until
+    // Start 6s after load, with sound. Browsers block unmuted autoplay until
     // the user has interacted, so fall back to muted and unmute on the first
     // interaction.
     const start = async () => {
@@ -95,7 +95,7 @@ export default function HeroModern() {
       window.addEventListener("touchstart", unmute, { once: true });
     };
 
-    const timer = window.setTimeout(start, 2000);
+    const timer = window.setTimeout(start, 6000);
 
     // Stop the video once the hero scrolls out of view. It deliberately does
     // NOT auto-resume on scroll back — the visitor restarts it if they want.
