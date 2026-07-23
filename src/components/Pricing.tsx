@@ -187,7 +187,7 @@ export default function Pricing() {
         >
           <span>💬 Questions? DM Anisha on Instagram</span>
           <a
-            href="https://instagram.com/anishaxsidhu"
+            href="https://www.instagram.com/anishablueprint?igsh=MWMydmtha29pZGs5MQ=="
             target="_blank"
             rel="noopener noreferrer"
             className="font-semibold text-brand-600 transition-colors hover:text-brand-700"

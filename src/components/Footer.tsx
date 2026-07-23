@@ -7,7 +7,7 @@ const NAV = [
   { label: "The Bigger Picture", href: "#student-spotlights" },
 ];
 
-const INSTAGRAM = "https://instagram.com/anishaxsidhu";
+const INSTAGRAM = "https://www.instagram.com/anishablueprint?igsh=MWMydmtha29pZGs5MQ==";
 
 export default function Footer() {
   return (
