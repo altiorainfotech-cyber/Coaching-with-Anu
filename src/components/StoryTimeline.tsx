@@ -143,14 +143,13 @@ export default function StoryTimeline() {
       dotY.set(y);
     }
 
-    // The dot finishes its run at the last pin. Rather than leaving that
-    // pin highlighted forever, everything settles back to normal once it
-    // arrives — only the pins in between light up as the dot passes them.
+    // The last pin lights up like the others as the dot reaches it, but once
+    // the dot finishes its run there, everything settles back to normal
+    // instead of staying highlighted forever.
     const finished = progressRef.current >= 1;
     let nearest = 0;
     let nearestDist = Infinity;
     stepLengths.forEach((stepLen, i) => {
-      if (i === stepLengths.length - 1) return;
       const dist = Math.abs(stepLen - length);
       if (dist < nearestDist) {
         nearestDist = dist;
