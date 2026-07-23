@@ -90,7 +90,7 @@ const STEPS: Step[] = [
 const ROAD =
   "M100,331 C200,331 200,152 300,152 S400,313 500,313 S600,152 700,152 S800,304 900,304";
 
-// How long the dot takes to travel the full road, on loop. Higher = slower.
+// How long the dot takes to travel the road once, then it stops at the end. Higher = slower.
 const TRAVEL_MS = 22000;
 
 export default function StoryTimeline() {
