@@ -100,7 +100,7 @@ export default function StoryTimeline() {
   const progressRef = useRef(0);
   const [stepLengths, setStepLengths] = useState<number[] | null>(null);
   const [totalLength, setTotalLength] = useState(0);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   // Once the road path is in the DOM, find how far along it (in path-length
   // units) each pin sits, so we can tell which pin the dot is nearest to.
@@ -143,16 +143,22 @@ export default function StoryTimeline() {
       dotY.set(y);
     }
 
+    // The dot finishes its run at the last pin. Rather than leaving that
+    // pin highlighted forever, everything settles back to normal once it
+    // arrives — only the pins in between light up as the dot passes them.
+    const finished = progressRef.current >= 1;
     let nearest = 0;
     let nearestDist = Infinity;
     stepLengths.forEach((stepLen, i) => {
+      if (i === stepLengths.length - 1) return;
       const dist = Math.abs(stepLen - length);
       if (dist < nearestDist) {
         nearestDist = dist;
         nearest = i;
       }
     });
-    setActiveIndex((prev) => (prev === nearest ? prev : nearest));
+    const next = finished ? null : nearest;
+    setActiveIndex((prev) => (prev === next ? prev : next));
   });
 
   return (
