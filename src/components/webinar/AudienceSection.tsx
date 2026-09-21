@@ -17,7 +17,7 @@ export default function AudienceSection() {
             id="for-you"
             className="font-(family-name:--font-wb-serif) text-4xl leading-[1.05] text-wb-primary sm:text-6xl"
           >
-            THIS IS FOR YOU IF...
+            THIS IS FOR YOU IF YOU...
           </h2>
         </Reveal>
         <ul className="grid gap-3">

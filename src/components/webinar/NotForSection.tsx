@@ -10,12 +10,8 @@ export default function NotForSection() {
           id="not-for"
           className="font-(family-name:--font-wb-serif) text-3xl leading-tight text-balance sm:text-5xl"
         >
-          THIS MAY NOT BE FOR YOU IF...
+          THIS IS NOT FOR YOU IF YOU...
         </h2>
-        <p className="mt-3 text-white/70">
-          We&apos;d rather be honest now than have you join for the wrong
-          reasons.
-        </p>
         <ul className="mt-8 grid gap-3">
           {NOT_FOR_YOU.map((item) => (
             <li
