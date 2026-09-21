@@ -140,7 +140,7 @@ export default function Hero() {
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-wb-soft shadow-[0_40px_80px_-40px_rgba(43,35,64,0.6)]">
             <Image
               src={portrait}
-              alt="Anu, your webinar host, standing outdoors in a cream blazer"
+              alt="Anisha, your webinar host, standing outdoors in a cream blazer"
               fill
               priority
               sizes="(min-width: 1024px) 460px, 90vw"

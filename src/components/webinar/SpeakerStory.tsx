@@ -20,7 +20,7 @@ export default function SpeakerStory() {
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] shadow-[0_40px_80px_-40px_rgba(43,35,64,0.6)]">
             <Image
               src={speaker}
-              alt="Anu hosting a live panel session on stage"
+              alt="Anisha hosting a live panel session on stage"
               fill
               loading="lazy"
               sizes="(min-width: 1024px) 440px, 90vw"
@@ -41,7 +41,7 @@ export default function SpeakerStory() {
             id="host-title"
             className="font-(family-name:--font-wb-serif) text-4xl leading-[1.1] text-balance text-wb-ink sm:text-5xl"
           >
-            Hi, I&apos;m Anu :)
+            Hi, I&apos;m Anisha :)
           </h2>
           <div className="mt-6 space-y-4 text-lg leading-relaxed text-wb-muted">
             {STORY_PARAGRAPHS.map((p) => (
