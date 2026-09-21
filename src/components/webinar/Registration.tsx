@@ -5,9 +5,10 @@ import { CheckCircle2, Loader2 } from "lucide-react";
 import { CTA_PRIMARY, WEBINAR } from "./content";
 
 type Status = "idle" | "loading" | "success";
-type Errors = Partial<Record<"firstName" | "email" | "consent" | "form", string>>;
+type Errors = Partial<Record<"firstName" | "email" | "whatsapp" | "consent" | "form", string>>;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_RE = /^\+?[\d\s().-]{7,20}$/;
 
 const inputClass =
   "mt-2 block min-h-14 w-full rounded-2xl border-2 bg-white px-5 text-base text-wb-ink placeholder:text-wb-muted/60 transition focus:border-wb-accent focus:outline-none focus:ring-4 focus:ring-wb-accent/30 aria-[invalid=true]:border-red-500";
@@ -21,11 +22,14 @@ export default function Registration() {
     const form = new FormData(e.currentTarget);
     const firstName = String(form.get("firstName") ?? "").trim();
     const email = String(form.get("email") ?? "").trim();
+    const whatsapp = String(form.get("whatsapp") ?? "").trim();
     const consent = form.get("consent") === "on";
 
     const next: Errors = {};
     if (!firstName) next.firstName = "Please enter your first name.";
     if (!EMAIL_RE.test(email)) next.email = "Please enter a valid email address.";
+    if (!PHONE_RE.test(whatsapp))
+      next.whatsapp = "Please enter a valid WhatsApp number, including country code.";
     if (!consent) next.consent = "Please agree to receive webinar updates.";
     setErrors(next);
     if (Object.keys(next).length) {
@@ -40,7 +44,7 @@ export default function Registration() {
       const res = await fetch("/api/webinar/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstName, email, consent }),
+        body: JSON.stringify({ firstName, email, whatsapp, consent }),
       });
       if (!res.ok) throw new Error();
       setStatus("success");
@@ -148,6 +152,28 @@ export default function Registration() {
                 {errors.email && (
                   <p id="email-err" role="alert" className="mt-2 text-sm text-red-600">
                     {errors.email}
+                  </p>
+                )}
+              </div>
+
+              <div className="mt-5">
+                <label htmlFor="whatsapp" className="text-sm font-semibold">
+                  WhatsApp Number
+                </label>
+                <input
+                  id="whatsapp"
+                  name="whatsapp"
+                  type="tel"
+                  autoComplete="tel"
+                  inputMode="tel"
+                  placeholder="+1 555 123 4567"
+                  aria-invalid={!!errors.whatsapp}
+                  aria-describedby={errors.whatsapp ? "whatsapp-err" : undefined}
+                  className={`${inputClass} border-wb-soft`}
+                />
+                {errors.whatsapp && (
+                  <p id="whatsapp-err" role="alert" className="mt-2 text-sm text-red-600">
+                    {errors.whatsapp}
                   </p>
                 )}
               </div>
