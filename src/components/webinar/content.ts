@@ -63,6 +63,3 @@ export const SOCIALS = [
   { label: "YouTube", href: "#" }, // TODO
   { label: "LinkedIn", href: "#" }, // TODO
 ] as const;
-
-export const DISCLAIMER =
-  "Educational content only. Results vary based on individual circumstances, implementation, market conditions, and other factors. No specific income or business outcome is guaranteed.";
