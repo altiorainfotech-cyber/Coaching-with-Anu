@@ -65,11 +65,11 @@ export default function Hero() {
           </motion.p>
           <motion.h1
             {...up(0.15)}
-            className="font-(family-name:--font-wb-serif) text-[2.5rem] leading-[1.08] text-balance text-wb-ink sm:text-6xl lg:text-[4.25rem]"
+            className="font-(family-name:--font-wb-serif) text-[2.25rem] leading-[1.1] text-balance text-wb-ink sm:text-5xl lg:text-[3.5rem]"
           >
-            Build an{" "}
-            <span className="relative text-wb-primary italic">
-              Online Income Stream
+            How I Went From Having <span className="whitespace-nowrap">$50K In Debt</span> To Making{" "}
+            <span className="relative whitespace-nowrap text-wb-primary italic">
+              $212K+
               <svg
                 aria-hidden
                 viewBox="0 0 300 12"
@@ -85,15 +85,13 @@ export default function Hero() {
                 />
               </svg>
             </span>{" "}
-            Without Waiting for the Perfect Time
+            Online With Digital Products
           </motion.h1>
           <motion.p
             {...up(0.3)}
             className="mt-6 max-w-xl text-lg leading-relaxed text-wb-muted"
           >
-            Learn the practical steps to turn your skills, knowledge, or ideas
-            into a digital offer — and start building an online business around
-            it.
+            Breaking down the industry that allows you to work from anywhere..
           </motion.p>
 
           <motion.div

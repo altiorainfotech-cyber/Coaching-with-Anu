@@ -1,4 +1,4 @@
-import { BRAND, DISCLAIMER, SOCIALS } from "./content";
+import { BRAND, SOCIALS } from "./content";
 
 const ICONS: Record<string, string> = {
   Instagram:
@@ -47,9 +47,6 @@ export default function Footer() {
         <div className="mt-10 border-t border-wb-primary/10 pt-8 text-center">
           <p className="text-sm text-wb-muted">
             © 2026 {BRAND}. All rights reserved.
-          </p>
-          <p className="mx-auto mt-3 max-w-2xl text-xs leading-relaxed text-wb-muted/80">
-            {DISCLAIMER}
           </p>
         </div>
       </div>

@@ -41,7 +41,7 @@ export default function SpeakerStory() {
             id="host-title"
             className="font-(family-name:--font-wb-serif) text-4xl leading-[1.1] text-balance text-wb-ink sm:text-5xl"
           >
-            From Learning the Hard Way to Building an Online Business
+            Hi, I&apos;m Anisha :)
           </h2>
           <div className="mt-6 space-y-4 text-lg leading-relaxed text-wb-muted">
             {STORY_PARAGRAPHS.map((p) => (
@@ -51,8 +51,16 @@ export default function SpeakerStory() {
           <blockquote className="mt-8 border-l-4 border-wb-accent bg-wb-soft/60 py-4 pr-4 pl-6 font-(family-name:--font-wb-serif) text-xl text-wb-primary italic">
             {STORY_QUOTE}
           </blockquote>
-          <div className="mt-8">
+          <p className="mt-8 text-lg text-wb-ink">
+            So, click on the button below and{" "}
+            <strong className="text-wb-primary">REGISTER</strong> for my free
+            webinar now 👇
+          </p>
+          <div className="mt-5">
             <CtaButton>{CTA_SECONDARY}</CtaButton>
+            <p className="mt-4 text-xs font-semibold tracking-[0.2em] text-wb-muted">
+              LIMITED SPOTS AVAILABLE
+            </p>
           </div>
         </Reveal>
       </div>
