@@ -16,6 +16,9 @@ export const WEBINAR = {
 export const CTA_PRIMARY = "SAVE MY FREE SPOT";
 export const CTA_SECONDARY = "JOIN THIS FREE LIVE WEBINAR";
 
+export const WHATSAPP_GROUP_URL =
+  "https://chat.whatsapp.com/EMeRHWlDmOc98OVMAOUzvM?s=cl&p=i&mlu=4&ilr=4";
+
 export const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "What You'll Learn", href: "#learn" },
