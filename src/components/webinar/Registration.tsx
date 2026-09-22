@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { CheckCircle2, Loader2 } from "lucide-react";
-import { CTA_PRIMARY, WEBINAR } from "./content";
+import { CheckCircle2, Loader2, MessageCircle } from "lucide-react";
+import { CTA_PRIMARY, WEBINAR, WHATSAPP_GROUP_URL } from "./content";
 
 type Status = "idle" | "loading" | "success";
 type Errors = Partial<Record<"firstName" | "email" | "whatsapp" | "consent" | "form", string>>;
@@ -110,6 +110,18 @@ export default function Registration() {
               </h3>
               <p className="mt-2 text-wb-muted">
                 Check your inbox for the webinar details.
+              </p>
+              <a
+                href={WHATSAPP_GROUP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-8 text-sm font-semibold tracking-[0.08em] text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#1ebe57] focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-wb-accent sm:w-auto"
+              >
+                <MessageCircle aria-hidden className="size-5" />
+                JOIN WHATSAPP GROUP
+              </a>
+              <p className="mt-3 text-xs text-wb-muted">
+                Get reminders and updates ahead of the live session.
               </p>
             </div>
           ) : (
